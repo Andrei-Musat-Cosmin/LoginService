@@ -9,6 +9,6 @@ import it.sincrono.entity.User;
 public interface UserRepository extends JpaRepository<User, Integer> {
 
 	// TROVA UN USER DAL USERNAME
-	Optional<User> findByUsername(String username);
+	public Optional<User> findByUsername(String username);
 
 }

@@ -26,7 +26,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 	@Autowired
 	private JwtService jwtService;
 
-	@Autowired // TODO cambiare il service quando hai integrato l'altro database
+	@Autowired 
 	private UserDetailsService userDetailsService;
 
 	/** VERRA CHIAMATO OGNI VOLTA CHE SI EFFETTUA UNA RICHIESTA **/
@@ -49,11 +49,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
 		// RICAVARE L'USERNAME TRAMITE IL TOKEN
 		username = jwtService.extractUsername(jwt);
-		;
 
 		// CONTROLLO SE L'USER E' GIA AUTENTICATO
 		if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-			// TODO usa il database sincono alla fine dei test
+			
 			UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
 			if (jwtService.isTokenValid(jwt, userDetails)) { // SE IL TOKEN E' VALIDO
 				UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userDetails,
