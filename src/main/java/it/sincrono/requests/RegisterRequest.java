@@ -4,13 +4,15 @@ import it.sincrono.entity.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegisterRequest {
+@EqualsAndHashCode(callSuper = false)
+public class RegisterRequest extends GenericRequest {
 
 	private String username;
 

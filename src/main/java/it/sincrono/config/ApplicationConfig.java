@@ -11,8 +11,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.client.RestTemplate;
 
-import it.sincrono.repositories.UserRepository;
+import it.sincrono.repositories.UtenteRepository;
 import lombok.RequiredArgsConstructor;
 
 @Configuration
@@ -20,12 +21,12 @@ import lombok.RequiredArgsConstructor;
 public class ApplicationConfig {
 
 	@Autowired
-	private UserRepository userRepository;
+	private UtenteRepository utenteRepository;
 
 	/** METODO PER PRENDERE L'USERNAME DAL DATABASE LOCALE **/
 	@Bean
 	public UserDetailsService userDetailsService() {
-		return username -> userRepository.findByUsername(username)
+		return username -> utenteRepository.findByUsername(username)
 				.orElseThrow(() -> new UsernameNotFoundException("User Not Found"));
 	}
 
@@ -45,5 +46,10 @@ public class ApplicationConfig {
 	@Bean
 	public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
 		return config.getAuthenticationManager();
+	}
+
+	@Bean
+	public RestTemplate restTemplate() {
+		return new RestTemplate();
 	}
 }
