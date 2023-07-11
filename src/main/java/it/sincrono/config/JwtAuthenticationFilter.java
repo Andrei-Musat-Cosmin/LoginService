@@ -17,16 +17,14 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.RequiredArgsConstructor;
 
 @Component
-@RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
 	@Autowired
 	private JwtService jwtService;
 
-	@Autowired 
+	@Autowired
 	private UserDetailsService userDetailsService;
 
 	/** VERRA CHIAMATO OGNI VOLTA CHE SI EFFETTUA UNA RICHIESTA **/
@@ -52,7 +50,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
 		// CONTROLLO SE L'USER E' GIA AUTENTICATO
 		if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-			
+
 			UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
 			if (jwtService.isTokenValid(jwt, userDetails)) { // SE IL TOKEN E' VALIDO
 				UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userDetails,

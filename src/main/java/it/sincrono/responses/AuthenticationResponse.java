@@ -1,18 +1,37 @@
 package it.sincrono.responses;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import it.sincrono.beans.Esito;
 
-@Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-@EqualsAndHashCode(callSuper = true)
 public class AuthenticationResponse extends GenericResponse {
 
 	private String token;
+
+	public AuthenticationResponse(Esito esito, String token) {
+		super(esito);
+		this.token = token;
+	}
+
+	public AuthenticationResponse() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public AuthenticationResponse(Esito esito) {
+		super(esito);
+		// TODO Auto-generated constructor stub
+	}
+
+	public AuthenticationResponse(String token) {
+		super();
+		this.token = token;
+	}
+
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
 
 }

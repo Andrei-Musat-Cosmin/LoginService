@@ -1,16 +1,29 @@
 package it.sincrono.responses;
 
 import it.sincrono.beans.Esito;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class GenericResponse {
 
 	private Esito esito = new Esito();
 
-	//private Object oggetto;
+	public GenericResponse(Esito esito) {
+		super();
+		this.esito = esito;
+	}
+
+	public GenericResponse() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Esito getEsito() {
+		return esito;
+	}
+
+	public void setEsito(Esito esito) {
+		this.esito = esito;
+	}
+
+	// private Object oggetto;
+
 }

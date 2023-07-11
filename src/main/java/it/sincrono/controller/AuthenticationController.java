@@ -12,11 +12,9 @@ import it.sincrono.requests.AuthenticationRequest;
 import it.sincrono.responses.AuthenticationResponse;
 import it.sincrono.services.AuthenticationService;
 import it.sincrono.services.exceptions.ServiceException;
-import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/login-service")
-@RequiredArgsConstructor
 public class AuthenticationController {
 
 	@Autowired

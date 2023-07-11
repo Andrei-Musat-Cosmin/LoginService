@@ -10,11 +10,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import lombok.RequiredArgsConstructor;
-
 @Configuration
 @EnableWebSecurity
-@RequiredArgsConstructor
 public class SecurityConfig {
 
 	@Autowired
@@ -25,22 +22,13 @@ public class SecurityConfig {
 
 	@SuppressWarnings("removal")
 	@Bean
-	public SecurityFilterChain securityFilterChain(HttpSecurity http)throws Exception {
-		
-		http.csrf()
-			.disable()
-			.authorizeHttpRequests()
-			.requestMatchers("/login-service/**")
-			.permitAll()
-			.anyRequest()
-			.authenticated()
-			.and()
-			.sessionManagement()
-			.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-			.and()
-			.authenticationProvider(authenticationProvider)
-			.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
-		
+	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
+		http.csrf().disable().authorizeHttpRequests().requestMatchers("/login-service/**").permitAll().anyRequest()
+				.authenticated().and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+				.authenticationProvider(authenticationProvider)
+				.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+
 		return http.build();
 	}
 

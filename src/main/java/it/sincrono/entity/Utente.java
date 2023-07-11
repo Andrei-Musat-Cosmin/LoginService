@@ -9,15 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "utenti")
 public class Utente implements UserDetails {
@@ -37,15 +29,21 @@ public class Utente implements UserDetails {
 	private boolean attivo;
 
 	@Override
-	public String getPassword() {
-		// TODO Auto-generated method stub
-		return this.password;
-	}
-
-	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public String getPassword() {
+		// TODO Auto-generated method stub
+		return password;
+	}
+
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return username;
 	}
 
 	@Override
@@ -70,6 +68,56 @@ public class Utente implements UserDetails {
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
 		return true;
+	}
+
+	public Utente(Integer id, String username, String password, String token_password, boolean attivo) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.token_password = token_password;
+		this.attivo = attivo;
+	}
+
+	public Utente() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getToken_password() {
+		return token_password;
+	}
+
+	public void setToken_password(String token_password) {
+		this.token_password = token_password;
+	}
+
+	public boolean isAttivo() {
+		return attivo;
+	}
+
+	public void setAttivo(boolean attivo) {
+		this.attivo = attivo;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 }
