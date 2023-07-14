@@ -34,6 +34,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 		return new AuthenticationResponse(jwtToken);
 	}
 
+	
 	// SALVARE UN USER NEL DATABASE DINAMICO
 	/**
 	 * public AuthenticationResponse login(RegisterRequest request, Role ruolo)

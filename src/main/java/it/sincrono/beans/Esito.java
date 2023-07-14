@@ -2,8 +2,8 @@ package it.sincrono.beans;
 
 public class Esito {
 
-	private Integer code = 0;
-	private String target = null;
+	private Integer code = 200;
+	private String target = "ok";
 	private String[] args = null;
 
 	public Esito(Integer code, String target, String[] args) {
