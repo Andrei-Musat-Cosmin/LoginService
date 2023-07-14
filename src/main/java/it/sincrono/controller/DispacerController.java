@@ -2,6 +2,7 @@ package it.sincrono.controller;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.Serializable;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import it.sincrono.beans.Esito;
+import it.sincrono.responses.AnagraficaDtoListResponse;
 import it.sincrono.responses.GenericResponse;
 import it.sincrono.services.utils.RestClient;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,22 +23,18 @@ import jakarta.servlet.http.HttpServletRequest;
 @RequestMapping("/services")
 public class DispacerController {
 
-	@Autowired
-	private RestTemplate restTemplate;
+
 	
 	@Autowired
-	RestClient restClient;
+	private RestClient restClient;
 
-	@Autowired
-	public DispacerController(RestTemplate restTemplate) {
-		this.restTemplate = restTemplate;
-	}
+
 
 	@SuppressWarnings({ "removal", "unchecked" })
 	@RequestMapping("/**")
-	public HttpEntity<String> authorizeAndDispatch(HttpServletRequest servletRequest) {
+	public HttpEntity<GenericResponse> authorizeAndDispatch(HttpServletRequest servletRequest) {
 
-		HttpEntity<String> httpEntity = null;
+		HttpEntity<GenericResponse> httpEntity = null;
 		
 		GenericResponse genericResponse = new GenericResponse();
 		
@@ -47,11 +45,12 @@ public class DispacerController {
 		
 			
 					
-			httpEntity=  new HttpEntity<String>(restClient.sendRequest("http://localhost:8085/".concat(request.getURI().getPath().substring(10)), 
+			httpEntity=  new HttpEntity<GenericResponse>(restClient.sendRequest("http://localhost:8085/".concat(request.getURI().getPath().substring(10)), 
 					HttpMethod.resolve(request.getMethodValue()).toString(), getBody(servletRequest).toString()));
 		
 		} catch (Exception e) {
 			genericResponse.setEsito(new Esito(404, e.getMessage(), null));
+			httpEntity = new HttpEntity<GenericResponse>(genericResponse);
 		}
 
 		return httpEntity;

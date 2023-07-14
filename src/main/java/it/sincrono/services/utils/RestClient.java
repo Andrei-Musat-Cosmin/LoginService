@@ -8,6 +8,13 @@ import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 import org.springframework.stereotype.Component;
 
+import it.sincrono.responses.AnagraficaDtoResponse;
+import it.sincrono.responses.GenericResponse;
+
+import it.sincrono.responses.*;
+
+import it.sincrono.entity.TipoAzienda;
+
 
 @Component
 public class RestClient {
@@ -17,7 +24,7 @@ public class RestClient {
         client = new ResteasyClientBuilder().build();
     }
 
-    public String sendRequest(String url, String method, String requestEntity) {
+    public GenericResponse sendRequest(String url, String method, String requestEntity) {
         ResteasyWebTarget target = client.target(url);
 
         Invocation.Builder builder = target.request();
@@ -43,11 +50,102 @@ public class RestClient {
         if (response.getStatusInfo().getFamily() != Response.Status.Family.SUCCESSFUL) {
             throw new RuntimeException("HTTP error code: " + response.getStatus());
         }
+        
+        System.out.println("response: "+response.getEntity().getClass());
+        
+        //System.out.println(" tag: "+response.getEntityTag().getClass());
 
-        String responseBody = response.readEntity(String.class);
+
+        GenericResponse responseBody = readEntity(response,method,url);
         response.close();
 
         return responseBody;
+    }
+    
+    
+    private GenericResponse readEntity(Response response,String method,String url) {
+    	
+    	GenericResponse genericResponse = null;
+    	
+    	if(method=="POST" || method=="PUT" || method=="DELETE") {
+    		
+    		genericResponse=response.readEntity(GenericResponse.class);
+    		
+    	}else {
+    		
+    		if(url.contains("dettaglio-anagrafica")) {
+    			
+    			genericResponse=response.readEntity(AnagraficaDtoResponse.class);
+    			
+    		}else {
+    			
+    			if(url.contains("anagraficaDto-list")) {
+    				
+    				genericResponse=response.readEntity(AnagraficaDtoListResponse.class);
+    				
+    			}else {
+    				
+    				if(url.contains("dashboard")) {
+        				
+        				genericResponse=response.readEntity(CommessaDtoListResponse.class);
+        				
+        			}else {
+        				
+        				if(url.contains("organico ")) {
+            				
+            				genericResponse=response.readEntity(OrganicoDtoListResponse.class);
+            				
+            			}else {
+            				
+            				
+            				if(url.contains("tipo-azienda/map")) {
+                				
+                				genericResponse=response.readEntity(TipologicheListResponse.class);
+                				
+                			}else {
+                				
+                				if(url.contains("tipo-contratto/map")) {
+                    				
+                    				genericResponse=response.readEntity(TipologicheListResponse.class);
+                    			
+                    			}else {
+                    				
+                    				if(url.contains("tipo-contratto-nazionale/map")) {
+                        				
+                        				genericResponse=response.readEntity(TipologicheListResponse.class);
+                        				
+                        			}else {
+                        				
+                        				if(url.contains("tipo-livelli-contrattuali/map")) {
+                            				
+                            				genericResponse=response.readEntity(TipologicheListResponse.class);
+                            				
+                            			}
+                        				
+                        			}
+                    				
+                    				
+                    			}
+                				
+                			}
+            				
+            				
+            			}
+        				
+        				
+        			}
+    				
+    			}
+    			
+    		}
+    	}
+    	
+    	return genericResponse;
+    	
+    	 
+    	
+    	
+    	
     }
 
     public void close() {
