@@ -120,6 +120,23 @@ public class RestClient {
                             				
                             				genericResponse=response.readEntity(TipologicheListResponse.class);
                             				
+                            			}else {
+                            				
+                            				if(url.contains("operazioni")) {
+                                				
+                                				genericResponse=response.readEntity(OperazioniListResponse.class);
+                            				
+                            				
+                            			}else {
+                            				
+                            					if(url.contains("funzioni-ruolo")) {
+                                				
+                            						genericResponse=response.readEntity(FunzioniListResponse.class);
+                            				
+                            				
+                            			}
+                            				
+                            				
                             			}
                         				
                         			}
@@ -139,8 +156,10 @@ public class RestClient {
     			
     		}
     	}
+    		
+	}
     	
-    	return genericResponse;
+	return genericResponse;
     	
     	 
     	
