@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import it.sincrono.beans.Esito;
 import it.sincrono.requests.AuthenticationRequest;
+import it.sincrono.requests.RegisterRequest;
 import it.sincrono.responses.AuthenticationResponse;
+import it.sincrono.responses.GenericResponse;
 import it.sincrono.services.AuthenticationService;
 import it.sincrono.services.exceptions.ServiceException;
 
@@ -45,10 +47,28 @@ public class AuthenticationController {
 
 	}
 
-	/**
-	 * @PostMapping("/login") public ResponseEntity<AuthenticationResponse>
-	 * login(@RequestBody RegisterRequest request) { return
-	 * ResponseEntity.ok(authenticationService.login(request, Role.DIPENDENTE)); }
-	 **/
+	@PostMapping("/cambia-password")
+	public HttpEntity<GenericResponse> recuperoPassword(@RequestBody RegisterRequest request) {
+
+		HttpEntity<GenericResponse> httpEntity = null;
+
+		GenericResponse genericResponse = new GenericResponse();
+
+		try {
+
+			System.out.println("Start invocation of method authenticate of Authentication Service");
+
+			authenticationService.recuperoPassword(request.getUsername());
+
+			System.out.println("End invocation of method authenticate of Authentication Service");
+
+			httpEntity = new HttpEntity<GenericResponse>(genericResponse);
+
+		} catch (ServiceException e) {
+			genericResponse.setEsito(new Esito(e.getCode(), e.getMessage(), null));
+			httpEntity = new HttpEntity<GenericResponse>(genericResponse);
+		}
+		return httpEntity;
+	}
 
 }

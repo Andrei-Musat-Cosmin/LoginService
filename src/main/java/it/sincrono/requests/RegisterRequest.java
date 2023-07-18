@@ -1,20 +1,12 @@
 package it.sincrono.requests;
 
-import it.sincrono.entity.Role;
-
 public class RegisterRequest extends GenericRequest {
 
 	private String username;
 
-	private String password;
-
-	private Role ruolo;
-
-	public RegisterRequest(String username, String password, Role ruolo) {
+	public RegisterRequest(String username) {
 		super();
 		this.username = username;
-		this.password = password;
-		this.ruolo = ruolo;
 	}
 
 	public RegisterRequest() {
@@ -28,22 +20,6 @@ public class RegisterRequest extends GenericRequest {
 
 	public void setUsername(String username) {
 		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public Role getRuolo() {
-		return ruolo;
-	}
-
-	public void setRuolo(Role ruolo) {
-		this.ruolo = ruolo;
 	}
 
 }

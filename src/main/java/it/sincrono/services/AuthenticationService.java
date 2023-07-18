@@ -8,7 +8,8 @@ public interface AuthenticationService {
 
 	public AuthenticationResponse authenticate(AuthenticationRequest request) throws ServiceException;
 
-	
+	public String recuperoPassword(String username) throws ServiceException;
+
 	// public AuthenticationResponse login(RegisterRequest request, Role ruolo)
 	// throws ServiceException;
 }

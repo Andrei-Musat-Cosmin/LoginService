@@ -34,14 +34,14 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 		return new AuthenticationResponse(jwtToken);
 	}
 
-	
-	// SALVARE UN USER NEL DATABASE DINAMICO
-	/**
-	 * public AuthenticationResponse login(RegisterRequest request, Role ruolo)
-	 * throws ServiceException { var user =
-	 * User.builder().username(request.getUsername())
-	 * .password(passwordEncoder.encode(request.getPassword())).ruolo(ruolo).build();
-	 * userReposiroty.save(user); var jwtToken = jwtService.generateToken(user);
-	 * return AuthenticationResponse.builder().token(jwtToken).build(); }
-	 **/
+	@Override
+	public String recuperoPassword(String username) throws ServiceException {
+		var utente = utenteReposiroty.findByUsername(username).orElseThrow();
+		String jwtToken = jwtService.generateToken(utente);
+		utente.setToken_password(jwtToken);
+		utenteReposiroty.saveAndFlush(utente);
+		return jwtToken;
+
+	}
+
 }
