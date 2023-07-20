@@ -1,18 +1,18 @@
 package it.sincrono.requests;
 
-public class AuthenticationRequest extends GenericRequest {
+public class LoginRequest extends GenericRequest {
 
 	private String email;
 
 	private String password;
 
-	public AuthenticationRequest(String email, String password) {
+	public LoginRequest(String email, String password) {
 		super();
 		this.email = email;
 		this.password = password;
 	}
 
-	public AuthenticationRequest() {
+	public LoginRequest() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

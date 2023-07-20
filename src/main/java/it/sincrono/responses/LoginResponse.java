@@ -2,26 +2,26 @@ package it.sincrono.responses;
 
 import it.sincrono.beans.Esito;
 
-public class AuthenticationResponse extends GenericResponse {
+public class LoginResponse extends GenericResponse {
 
 	private String token;
 
-	public AuthenticationResponse(Esito esito, String token) {
+	public LoginResponse(Esito esito, String token) {
 		super(esito);
 		this.token = token;
 	}
 
-	public AuthenticationResponse() {
+	public LoginResponse() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public AuthenticationResponse(Esito esito) {
+	public LoginResponse(Esito esito) {
 		super(esito);
 		// TODO Auto-generated constructor stub
 	}
 
-	public AuthenticationResponse(String token) {
+	public LoginResponse(String token) {
 		super();
 		this.token = token;
 	}

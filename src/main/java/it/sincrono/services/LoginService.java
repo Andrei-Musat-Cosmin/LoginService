@@ -1,14 +1,16 @@
 package it.sincrono.services;
 
-import it.sincrono.requests.AuthenticationRequest;
-import it.sincrono.responses.AuthenticationResponse;
+import it.sincrono.requests.LoginRequest;
+import it.sincrono.responses.LoginResponse;
 import it.sincrono.services.exceptions.ServiceException;
 
-public interface AuthenticationService {
+public interface LoginService {
 
-	public AuthenticationResponse authenticate(AuthenticationRequest request) throws ServiceException;
+	public LoginResponse login(LoginRequest request) throws ServiceException;
 
 	public String recuperoPassword(String username) throws ServiceException;
+
+	public void logout(String token_password) throws ServiceException;
 
 	// public AuthenticationResponse login(RegisterRequest request, Role ruolo)
 	// throws ServiceException;

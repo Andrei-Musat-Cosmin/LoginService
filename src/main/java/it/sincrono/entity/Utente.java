@@ -5,6 +5,7 @@ import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -17,15 +18,20 @@ public class Utente implements UserDetails {
 	private static final long serialVersionUID = 9046549748459026500L;
 
 	@Id
+	@Column(name = "id")
 	@GeneratedValue
 	private Integer id;
 
+	@Column(name = "username")
 	private String username;
 
+	@Column(name = "password")
 	private String password;
 
-	private String token_password;
+	@Column(name = "token_password")
+	private String tokenPassword;
 
+	@Column(name = "attivo")
 	private boolean attivo;
 
 	@Override
@@ -70,12 +76,12 @@ public class Utente implements UserDetails {
 		return true;
 	}
 
-	public Utente(Integer id, String username, String password, String token_password, boolean attivo) {
+	public Utente(Integer id, String username, String password, String tokenPassword, boolean attivo) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.password = password;
-		this.token_password = token_password;
+		this.tokenPassword = tokenPassword;
 		this.attivo = attivo;
 	}
 
@@ -92,12 +98,12 @@ public class Utente implements UserDetails {
 		this.id = id;
 	}
 
-	public String getToken_password() {
-		return token_password;
+	public String getTokenPassword() {
+		return tokenPassword;
 	}
 
-	public void setToken_password(String token_password) {
-		this.token_password = token_password;
+	public void setTokenPassword(String tokenPassword) {
+		this.tokenPassword = tokenPassword;
 	}
 
 	public boolean isAttivo() {

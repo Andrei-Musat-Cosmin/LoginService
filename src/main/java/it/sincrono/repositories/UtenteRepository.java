@@ -11,4 +11,7 @@ public interface UtenteRepository extends JpaRepository<Utente, Integer>, Utente
 	// TROVA UN USER DAL USERNAME
 	public Optional<Utente> findByUsername(String username);
 
+	// TROVA UN USER DAL TOKEN
+	public Optional<Utente> findByTokenPassword(String token_password);
+
 }

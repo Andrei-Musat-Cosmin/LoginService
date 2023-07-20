@@ -6,14 +6,14 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.stereotype.Service;
 
 import it.sincrono.repositories.UtenteRepository;
-import it.sincrono.requests.AuthenticationRequest;
-import it.sincrono.responses.AuthenticationResponse;
-import it.sincrono.services.AuthenticationService;
+import it.sincrono.requests.LoginRequest;
+import it.sincrono.responses.LoginResponse;
 import it.sincrono.services.JwtService;
+import it.sincrono.services.LoginService;
 import it.sincrono.services.exceptions.ServiceException;
 
 @Service
-public class AuthenticationServiceImpl implements AuthenticationService {
+public class LoginServiceImpl implements LoginService {
 
 	@Autowired
 	private UtenteRepository utenteReposiroty;
@@ -24,23 +24,31 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 	@Autowired
 	private AuthenticationManager authenticationManager;
 
-	public AuthenticationResponse authenticate(AuthenticationRequest request) throws ServiceException {
+	public LoginResponse login(LoginRequest request) throws ServiceException {
 		authenticationManager
 				.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
 		var utente = utenteReposiroty.findByUsername(request.getEmail()).orElseThrow();
 		var jwtToken = jwtService.generateToken(utente);
-		utente.setToken_password(jwtToken);
+		utente.setTokenPassword(jwtToken);
 		utenteReposiroty.saveAndFlush(utente);
-		return new AuthenticationResponse(jwtToken);
+		return new LoginResponse(jwtToken);
 	}
 
 	@Override
 	public String recuperoPassword(String username) throws ServiceException {
 		var utente = utenteReposiroty.findByUsername(username).orElseThrow();
 		String jwtToken = jwtService.generateToken(utente);
-		utente.setToken_password(jwtToken);
+		utente.setTokenPassword(jwtToken);
 		utenteReposiroty.saveAndFlush(utente);
 		return jwtToken;
+
+	}
+
+	@Override
+	public void logout(String token_password) throws ServiceException {
+		var utente = utenteReposiroty.findByTokenPassword(token_password).orElseThrow();
+		utente.setTokenPassword(null);
+		utenteReposiroty.save(utente);
 
 	}
 
