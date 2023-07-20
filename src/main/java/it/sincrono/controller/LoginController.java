@@ -20,7 +20,7 @@ import it.sincrono.services.utils.RestClient;
 
 @RestController
 @RequestMapping("/login-service")
-@CrossOrigin("*")
+@CrossOrigin()
 public class LoginController {
 
 	@Autowired
