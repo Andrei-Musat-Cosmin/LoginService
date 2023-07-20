@@ -9,14 +9,8 @@ import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 import org.springframework.stereotype.Component;
 
-import it.sincrono.responses.AnagraficaDtoListResponse;
-import it.sincrono.responses.AnagraficaDtoResponse;
-import it.sincrono.responses.CommessaDtoListResponse;
-import it.sincrono.responses.FunzioniListResponse;
-import it.sincrono.responses.GenericResponse;
-import it.sincrono.responses.OperazioniListResponse;
-import it.sincrono.responses.OrganicoDtoListResponse;
-import it.sincrono.responses.TipologicheListResponse;
+import it.sincrono.responses.*;
+
 
 @Component
 public class RestClient {
@@ -71,45 +65,120 @@ public class RestClient {
 
 			genericResponse = response.readEntity(GenericResponse.class);
 
-		} else if (url.contains("dettaglio-anagrafica") || url.contains("dettaglio-anagrafica-token")) {
+		} else {
 
-			genericResponse = response.readEntity(AnagraficaDtoResponse.class);
+			if (url.contains("dettaglio")) {
 
-		} else if (url.contains("anagraficaDto-list")) {
+				genericResponse = response.readEntity(AnagraficaDtoResponse.class);
 
-			genericResponse = response.readEntity(AnagraficaDtoListResponse.class);
+			} else {
 
-		} else if (url.contains("dashboard")) {
+				if (url.contains("list")) {
 
-			genericResponse = response.readEntity(CommessaDtoListResponse.class);
+					genericResponse = response.readEntity(AnagraficaDtoListResponse.class);
 
-		} else if (url.contains("organico ")) {
+				} else {
 
-			genericResponse = response.readEntity(OrganicoDtoListResponse.class);
+					if (url.contains("dashboard")) {
 
-		} else if (url.contains("tipo-azienda/map")) {
+						genericResponse = response.readEntity(CommessaDtoListResponse.class);
 
-			genericResponse = response.readEntity(TipologicheListResponse.class);
+					} else {
 
-		} else if (url.contains("tipo-contratto/map")) {
+						if (url.contains("organico ")) {
 
-			genericResponse = response.readEntity(TipologicheListResponse.class);
+							genericResponse = response.readEntity(OrganicoDtoListResponse.class);
 
-		} else if (url.contains("tipo-contratto-nazionale/map")) {
+						} else {
 
-			genericResponse = response.readEntity(TipologicheListResponse.class);
+							if (url.contains("tipo-azienda/map")) {
 
-		} else if (url.contains("tipo-livelli-contrattuali/map")) {
+								genericResponse = response.readEntity(TipologicheListResponse.class);
 
-			genericResponse = response.readEntity(TipologicheListResponse.class);
+							} else {
 
-		} else if (url.contains("operazioni")) {
+								if (url.contains("tipo-contratto/map")) {
 
-			genericResponse = response.readEntity(OperazioniListResponse.class);
+									genericResponse = response.readEntity(TipologicheListResponse.class);
 
-		} else if (url.contains("funzioni-ruolo")) {
+								} else {
 
-			genericResponse = response.readEntity(FunzioniListResponse.class);
+									if (url.contains("tipo-contratto-nazionale/map")) {
+
+										genericResponse = response.readEntity(TipologicheListResponse.class);
+
+									} else {
+
+										if (url.contains("tipo-livelli-contrattuali/map")) {
+
+											genericResponse = response.readEntity(TipologicheListResponse.class);
+
+										} else {
+
+											if (url.contains("operazioni")) {
+
+												genericResponse = response.readEntity(OperazioniListResponse.class);
+
+											} else {
+
+												if (url.contains("funzioni-ruolo")) {
+
+													genericResponse = response.readEntity(FunzioniListResponse.class);
+
+												} else {
+
+													if (url.contains("dettaglio-token")) {
+
+														genericResponse = response
+																.readEntity(AnagraficaDtoResponse.class);
+
+													} else {
+
+														if (url.contains("operazioni")) {
+
+															genericResponse = response
+																	.readEntity(OperazioniListResponse.class);
+
+														} else {
+
+															if (url.contains("storico-commesse-anagrafica")) {
+
+																genericResponse = response
+																		.readEntity(CommessaListResponse.class);
+
+															} else {
+
+																if (url.contains("storico-contratti")) {
+
+																	genericResponse = response
+																			.readEntity(ContrattoListResponse.class);
+
+																}
+
+															}
+
+														}
+
+													}
+
+												}
+
+											}
+
+										}
+
+									}
+
+								}
+
+							}
+
+						}
+					}
+
+				}
+
+			}
 
 		}
 
