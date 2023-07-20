@@ -73,7 +73,7 @@ public class LoginController {
 
 			emailRequest.setTo(request.getUsername());
 			emailRequest.setSubject("Link per il recupero password");
-			emailRequest.setBody("http://localhost:4200/recupero-password/" + jwtToken
+			emailRequest.setBody("http://localhost:4200/form-recupero-password/" + jwtToken
 					+ " Se non sei stato te a richiedere il reset della password," + " per favore ignora questa email");
 
 			System.out.println(emailRequest);
