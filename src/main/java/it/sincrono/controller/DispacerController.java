@@ -45,6 +45,10 @@ public class DispacerController {
 
 			loginService.logout(logoutRequest.getToken());
 
+			genericResponse.setEsito(new Esito());
+
+			httpEntity = new HttpEntity<GenericResponse>(genericResponse);
+
 		} catch (ServiceException e) {
 			String[] messaggio = new String[1];
 			messaggio[0] = "Utente non autorizzato";
