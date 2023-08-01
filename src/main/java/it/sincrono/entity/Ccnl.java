@@ -1,27 +1,18 @@
 package it.sincrono.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
-
-public class ContrattoNazionale {
+public class Ccnl {
 
 	private Integer id;
 
-
 	private String descrizione;
 
-	public ContrattoNazionale(Integer id, String descrizione) {
+	public Ccnl(Integer id, String descrizione) {
 		super();
 		this.id = id;
 		this.descrizione = descrizione;
 	}
 
-	public ContrattoNazionale() {
+	public Ccnl() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
