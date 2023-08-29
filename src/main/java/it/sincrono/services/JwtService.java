@@ -19,7 +19,7 @@ import io.jsonwebtoken.security.Keys;
 public class JwtService {
 
 	/** SECRET KEY **/
-	private static final String SECRET_KEY = "zBw7EGaUZhd98dM4slJ1tK/oZRN9lA06T4RmmC9KuakQZFOEFJJki8RVp0/+7MLj";
+	private static final String SECRET_KEY = "4935deb64149bb901aa558f65169afc9e3271ba688ba0669936d0f0a4c2e539c";
 
 	/** ESTRATTORI DI DATI **/
 	public String extractUsername(String jwt) {
@@ -52,7 +52,7 @@ public class JwtService {
 		return Jwts.builder().setClaims(extraClaims).setSubject(userDetails.getUsername()) // L'UTENTE ALLA QUALE VIENE
 																							// ASSEGNATO IL TOKEN
 				.setIssuedAt(new Date(System.currentTimeMillis())) // DATA DI LOGIN O CREAZIONE DEL TOKEN
-				.setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24)) // DATA DI SCADENTA DEL TOKEN
+				.setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 4)) // DATA DI SCADENTA DEL TOKEN
 				.signWith(getSignInKey(), SignatureAlgorithm.HS256) // QUALE CHIAVE USARE E LA LUNGHEZZA
 				.compact();
 	}

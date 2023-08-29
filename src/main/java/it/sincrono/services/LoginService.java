@@ -12,6 +12,4 @@ public interface LoginService {
 
 	public void logout(String token_password) throws ServiceException;
 
-	// public AuthenticationResponse login(RegisterRequest request, Role ruolo)
-	// throws ServiceException;
 }
