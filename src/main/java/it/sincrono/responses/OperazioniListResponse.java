@@ -2,13 +2,11 @@ package it.sincrono.responses;
 
 import java.util.List;
 
-
-
 import it.sincrono.beans.Esito;
 import it.sincrono.entity.Operazione;
 
 public class OperazioniListResponse extends GenericResponse {
-	
+
 	private List<Operazione> list;
 
 	public OperazioniListResponse() {

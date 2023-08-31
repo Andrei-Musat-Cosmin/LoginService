@@ -18,6 +18,7 @@ import it.sincrono.responses.FunzioniListResponse;
 import it.sincrono.responses.GenericResponse;
 import it.sincrono.responses.OperazioniListResponse;
 import it.sincrono.responses.OrganicoDtoListResponse;
+import it.sincrono.responses.RuoloListResponse;
 import it.sincrono.responses.TipologicheListResponse;
 
 @Component
@@ -59,7 +60,7 @@ public class RestClient {
 
 		// System.out.println(" tag: "+response.getEntityTag().getClass());
 
-		GenericResponse responseBody = readEntity(response, method, url);
+		GenericResponse responseBody = readEntity(response, method, url.substring(9).split("/")[1]);
 		response.close();
 
 		return responseBody;
@@ -71,7 +72,7 @@ public class RestClient {
 
 		// Otteniamo la parte del percorso URL che ci interessa
 
-		switch (method) {
+		switch (url) {
 		case "dettaglio":
 			genericResponse = response.readEntity(AnagraficaDtoResponse.class);
 			break;
@@ -81,25 +82,28 @@ public class RestClient {
 		case "dashboard":
 			genericResponse = response.readEntity(CommessaDtoListResponse.class);
 			break;
-		case "organico":
+		case "organico":// TO DO AGGIUNGERE RUOLO LIST RESPONSE
 			genericResponse = response.readEntity(OrganicoDtoListResponse.class);
 			break;
-		case "tipo-azienda/map":
-		case "tipo-contratto/map":
-		case "tipo-ccnl/map":
-		case "tipo-livelli-contrattuali/map":
+		case "ruoli-map":// TO DO AGGIUNGERE RUOLO LIST RESPONSE
+			genericResponse = response.readEntity(RuoloListResponse.class);
+			break;
+		case "tipo-azienda-map":
+		case "tipo-contratto-map":
+		case "tipo-ccnl-map":
+		case "tipo-livelli-contrattuali-map":
 			genericResponse = response.readEntity(TipologicheListResponse.class);
 			break;
 		case "operazioni":
 			genericResponse = response.readEntity(OperazioniListResponse.class);
 			break;
-		case "funzioni-ruolo":
+		case "funzioni-ruolo-tree":
 			genericResponse = response.readEntity(FunzioniListResponse.class);
 			break;
 		case "dettaglio-token":
 			genericResponse = response.readEntity(AnagraficaDtoResponse.class);
 			break;
-		case "storico-commesse-anagrafica":
+		case "storico-commesse":
 			genericResponse = response.readEntity(CommessaListResponse.class);
 			break;
 		case "storico-contratti":

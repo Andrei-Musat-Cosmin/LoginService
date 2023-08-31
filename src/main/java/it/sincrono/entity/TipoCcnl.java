@@ -1,18 +1,18 @@
 package it.sincrono.entity;
 
-public class Ccnl {
+public class TipoCcnl {
 
 	private Integer id;
 
 	private String descrizione;
 
-	public Ccnl(Integer id, String descrizione) {
+	public TipoCcnl(Integer id, String descrizione) {
 		super();
 		this.id = id;
 		this.descrizione = descrizione;
 	}
 
-	public Ccnl() {
+	public TipoCcnl() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

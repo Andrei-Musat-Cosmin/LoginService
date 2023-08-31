@@ -1,14 +1,11 @@
 package it.sincrono.responses;
 
-import java.io.Serializable;
 import java.util.List;
-
-import java.util.Objects;
 
 import it.sincrono.beans.Esito;
 import it.sincrono.entity.Contratto;
 
-public class ContrattoListResponse extends GenericResponse{
+public class ContrattoListResponse extends GenericResponse {
 
 	private List<Contratto> list;
 

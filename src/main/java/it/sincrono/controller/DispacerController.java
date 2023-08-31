@@ -72,9 +72,8 @@ public class DispacerController {
 		ServletServerHttpRequest request = new ServletServerHttpRequest(servletRequest);
 
 		try {
-			if (utenteService.isAuthorized(request.getURI().getPath().substring(9).replaceAll("[0-9]+$", "%"),
+			if (utenteService.isAuthorized(request.getURI().getPath().substring(9).split("/")[1],
 					request.getHeaders().getFirst("authorization").substring(7)) != null) {
-
 				httpEntity = new HttpEntity<GenericResponse>(restClient.sendRequest(
 						"http://localhost:8085/".concat(request.getURI().getPath().substring(10)),
 						HttpMethod.resolve(request.getMethodValue()).toString(), getBody(servletRequest).toString()));

@@ -1,12 +1,11 @@
 package it.sincrono.responses;
 
-import java.io.Serializable;
 import java.util.List;
 
 import it.sincrono.beans.Esito;
 import it.sincrono.repositories.dto.CommessaDto;
 
-public class CommessaDtoListResponse extends GenericResponse{
+public class CommessaDtoListResponse extends GenericResponse {
 	private List<CommessaDto> list;
 
 	public CommessaDtoListResponse(List<CommessaDto> list, Esito esito) {

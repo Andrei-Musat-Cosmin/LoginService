@@ -15,7 +15,7 @@ import jakarta.persistence.Table;
 @Table(name = "utenti")
 public class Utente implements UserDetails {
 
-	private static final long serialVersionUID = 9046549748459026500L;
+	private static final long serialVersionUID = 4828523718860271427L;
 
 	@Id
 	@Column(name = "id")

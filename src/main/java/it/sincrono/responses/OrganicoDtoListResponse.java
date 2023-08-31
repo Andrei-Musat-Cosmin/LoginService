@@ -1,13 +1,12 @@
 package it.sincrono.responses;
 
-import java.io.Serializable;
 import java.util.List;
 
 import it.sincrono.beans.Esito;
 import it.sincrono.repositories.dto.OrganicoDto;
 
-public class OrganicoDtoListResponse extends GenericResponse{
-	
+public class OrganicoDtoListResponse extends GenericResponse {
+
 	private List<OrganicoDto> list;
 
 	public OrganicoDtoListResponse(Esito esito, List<OrganicoDto> list) {

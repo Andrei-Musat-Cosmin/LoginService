@@ -1,17 +1,15 @@
 package it.sincrono.responses;
 
-import java.io.Serializable;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import it.sincrono.beans.Esito;
 import it.sincrono.repositories.dto.AnagraficaDto;
 
-public class AnagraficaDtoListResponse extends GenericResponse{
+public class AnagraficaDtoListResponse extends GenericResponse {
 	
-	 @JsonView()
+	@JsonView()
 	private List<AnagraficaDto> list;
 
 	public AnagraficaDtoListResponse(Esito esito, List<AnagraficaDto> list) {

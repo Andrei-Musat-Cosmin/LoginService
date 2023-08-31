@@ -10,6 +10,7 @@ import it.sincrono.requests.LoginRequest;
 import it.sincrono.responses.LoginResponse;
 import it.sincrono.services.JwtService;
 import it.sincrono.services.LoginService;
+import it.sincrono.services.costants.ServiceMessages;
 import it.sincrono.services.exceptions.ServiceException;
 
 @Service
@@ -27,11 +28,15 @@ public class LoginServiceImpl implements LoginService {
 	public LoginResponse login(LoginRequest request) throws ServiceException {
 		authenticationManager
 				.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
-		var utente = utenteReposiroty.findByUsername(request.getEmail()).orElseThrow();
-		var jwtToken = jwtService.generateToken(utente);
-		utente.setTokenPassword(jwtToken);
-		utenteReposiroty.saveAndFlush(utente);
-		return new LoginResponse(jwtToken);
+		if (utenteReposiroty.findByUsername(request.getEmail()).orElseThrow().isAttivo()) {
+			var utente = utenteReposiroty.findByUsername(request.getEmail()).orElseThrow();
+			var jwtToken = jwtService.generateToken(utente);
+			utente.setTokenPassword(jwtToken);
+			utenteReposiroty.saveAndFlush(utente);
+			return new LoginResponse(jwtToken);
+		} else {
+			throw new ServiceException(ServiceMessages.RECORD_NON_TROVATO);
+		}
 	}
 
 	@Override

@@ -1,15 +1,11 @@
 package it.sincrono.responses;
 
-import java.io.Serializable;
 import java.util.List;
-
-import java.util.Objects;
 
 import it.sincrono.beans.Esito;
 import it.sincrono.entity.Commessa;
 
-
-public class CommessaListResponse extends GenericResponse{
+public class CommessaListResponse extends GenericResponse {
 	private List<Commessa> list;
 
 	public CommessaListResponse() {

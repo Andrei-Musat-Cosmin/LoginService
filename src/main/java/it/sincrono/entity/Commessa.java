@@ -1,19 +1,9 @@
 package it.sincrono.entity;
 
 import java.util.Date;
-
 import java.util.Objects;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
-
 public class Commessa {
-
 
 	private Integer id;
 
@@ -68,18 +58,12 @@ public class Commessa {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	
-	
-	
 
 	@Override
 	public int hashCode() {
 		return Objects.hash(attesaLavori, azienda, aziendaDiFatturazioneInterna, cliente, clienteFinale, costoMese,
 				dataFine, dataInizio, distacco, id, nominativo, stato, tariffaGiornaliera, titoloPosizione);
 	}
-
-	
 
 	public Commessa(Integer id) {
 		super();

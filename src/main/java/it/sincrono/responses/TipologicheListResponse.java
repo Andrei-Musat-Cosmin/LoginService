@@ -1,12 +1,11 @@
 package it.sincrono.responses;
 
-import java.io.Serializable;
 import java.util.List;
 
 import it.sincrono.beans.Esito;
 
-public class TipologicheListResponse<T> extends GenericResponse{
-	
+public class TipologicheListResponse<T> extends GenericResponse {
+
 	private List<T> list;
 
 	public TipologicheListResponse(Esito esito, List<T> list) {
