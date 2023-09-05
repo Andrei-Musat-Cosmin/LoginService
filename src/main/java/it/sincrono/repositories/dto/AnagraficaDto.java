@@ -17,7 +17,6 @@ public class AnagraficaDto {
 	@JsonView(Contratto.class)
 	private Contratto contratto;
 
-	@JsonView(Commessa.class)
 	private List<Commessa> commesse;
 
 	@JsonView(Ruolo.class)
@@ -51,12 +50,12 @@ public class AnagraficaDto {
 		this.contratto = contratto;
 	}
 
-	public List<Commessa> getCommessa() {
+	public List<Commessa> getCommesse() {
 		return commesse;
 	}
 
-	public void setCommessa(List<Commessa> commessa) {
-		this.commesse = commessa;
+	public void setCommesse(List<Commessa> commesse) {
+		this.commesse = commesse;
 	}
 
 	public Ruolo getRuolo() {
