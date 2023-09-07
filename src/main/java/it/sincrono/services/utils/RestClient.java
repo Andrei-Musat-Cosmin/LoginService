@@ -75,18 +75,34 @@ public class RestClient {
 		case "dettaglio":
 			genericResponse = response.readEntity(AnagraficaDtoResponse.class);
 			break;
+		case "dettaglio-token":
+			genericResponse = response.readEntity(AnagraficaDtoResponse.class);
+			break;
+		case "organico":
+			genericResponse = response.readEntity(OrganicoDtoListResponse.class);
+			break;
+		case "storico-commesse":
+			genericResponse = response.readEntity(CommessaListResponse.class);
+			break;
+		case "storico-contratti":
+			genericResponse = response.readEntity(ContrattoListResponse.class);
+			break;
+		case "ruoli-map":
+			genericResponse = response.readEntity(RuoloListResponse.class);
+			break;
+		case "operazioni":
+			genericResponse = response.readEntity(OperazioniListResponse.class);
+			break;
+		case "funzioni-ruolo-tree":
+			genericResponse = response.readEntity(FunzioniListResponse.class);
+			break;
+		case "filter":
 		case "list":
 		case "listCommesse":
 		case "listContratti":
 		case "listFilter":
 		case "listAllCommesse":
 			genericResponse = response.readEntity(AnagraficaDtoListResponse.class);
-			break;
-		case "organico":
-			genericResponse = response.readEntity(OrganicoDtoListResponse.class);
-			break;
-		case "ruoli-map":
-			genericResponse = response.readEntity(RuoloListResponse.class);
 			break;
 		case "tipo-azienda-map":
 		case "tipo-contratto-map":
@@ -95,21 +111,6 @@ public class RestClient {
 		case "tipo-causa-fine-rapporto-map":
 		case "tipo-canale-reclutamento-map":
 			genericResponse = response.readEntity(TipologicheListResponse.class);
-			break;
-		case "operazioni":
-			genericResponse = response.readEntity(OperazioniListResponse.class);
-			break;
-		case "funzioni-ruolo-tree":
-			genericResponse = response.readEntity(FunzioniListResponse.class);
-			break;
-		case "dettaglio-token":
-			genericResponse = response.readEntity(AnagraficaDtoResponse.class);
-			break;
-		case "storico-commesse":
-			genericResponse = response.readEntity(CommessaListResponse.class);
-			break;
-		case "storico-contratti":
-			genericResponse = response.readEntity(ContrattoListResponse.class);
 			break;
 		default:
 			// Se nessun caso corrisponde, gestiamo di default
