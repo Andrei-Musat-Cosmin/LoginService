@@ -86,7 +86,7 @@ public class Contratto {
 
 	private Double retribuzioneNettaMensile;
 
-	private Integer numeroMensilita;
+	private Double diariaAnnua;
 
 	public Contratto(Integer id, TipoContratto tipoContratto, TipoLivelloContratto tipoLivelloContratto,
 			TipoAzienda tipoAzienda, TipoCcnl tipoCcnl, TipoCanaleReclutamento tipoCanaleReclutamento,
@@ -98,7 +98,7 @@ public class Contratto {
 			Boolean categoriaProtetta, String tutor, String pfi, Boolean corsoSicurezza, Date dataCorsoSicurezza,
 			Boolean pc, Boolean visitaMedica, Date dataVisitaMedica, Double scattiAnzianita, Double tariffaPartitaIva,
 			Boolean assicurazioneObbligatoria, Double retribuzioneNettaGiornaliera, Double retribuzioneNettaMensile,
-			Integer numeroMensilita) {
+			Double diariaAnnua) {
 		super();
 		this.id = id;
 		this.tipoContratto = tipoContratto;
@@ -141,7 +141,7 @@ public class Contratto {
 		this.assicurazioneObbligatoria = assicurazioneObbligatoria;
 		this.retribuzioneNettaGiornaliera = retribuzioneNettaGiornaliera;
 		this.retribuzioneNettaMensile = retribuzioneNettaMensile;
-		this.numeroMensilita = numeroMensilita;
+		this.diariaAnnua = diariaAnnua;
 	}
 
 	public Contratto(TipoContratto tipoContratto, TipoAzienda tipoAzienda, TipoCcnl tipoCcnl) {
@@ -489,12 +489,12 @@ public class Contratto {
 		this.retribuzioneNettaMensile = retribuzioneNettaMensile;
 	}
 
-	public Integer getNumeroMensilita() {
-		return numeroMensilita;
+	public Double getDiariaAnnua() {
+		return diariaAnnua;
 	}
 
-	public void setNumeroMensilita(Integer numeroMensilita) {
-		this.numeroMensilita = numeroMensilita;
+	public void setDiariaAnnua(Double diariaAnnua) {
+		this.diariaAnnua = diariaAnnua;
 	}
 
 }
