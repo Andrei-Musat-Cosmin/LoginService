@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 
 import it.sincrono.responses.AnagraficaDtoListResponse;
 import it.sincrono.responses.AnagraficaDtoResponse;
-import it.sincrono.responses.CommessaDtoListResponse;
 import it.sincrono.responses.CommessaListResponse;
 import it.sincrono.responses.ContrattoListResponse;
 import it.sincrono.responses.FunzioniListResponse;
@@ -77,21 +76,24 @@ public class RestClient {
 			genericResponse = response.readEntity(AnagraficaDtoResponse.class);
 			break;
 		case "list":
+		case "listCommesse":
+		case "listContratti":
+		case "listFilter":
+		case "listAllCommesse":
 			genericResponse = response.readEntity(AnagraficaDtoListResponse.class);
 			break;
-		case "dashboard":
-			genericResponse = response.readEntity(CommessaDtoListResponse.class);
-			break;
-		case "organico":// TO DO AGGIUNGERE RUOLO LIST RESPONSE
+		case "organico":
 			genericResponse = response.readEntity(OrganicoDtoListResponse.class);
 			break;
-		case "ruoli-map":// TO DO AGGIUNGERE RUOLO LIST RESPONSE
+		case "ruoli-map":
 			genericResponse = response.readEntity(RuoloListResponse.class);
 			break;
 		case "tipo-azienda-map":
 		case "tipo-contratto-map":
 		case "tipo-ccnl-map":
 		case "tipo-livelli-contrattuali-map":
+		case "tipo-causa-fine-rapporto-map":
+		case "tipo-canale-reclutamento-map":
 			genericResponse = response.readEntity(TipologicheListResponse.class);
 			break;
 		case "operazioni":

@@ -1,68 +1,57 @@
 package it.sincrono.entity;
 
 import java.util.Date;
-import java.util.Objects;
 
 public class Commessa {
 
 	private Integer id;
 
-	private String cliente;
+	private String aziendaCliente;
 
 	private String clienteFinale;
 
 	private String titoloPosizione;
 
-	private String distacco;
+	private Boolean distacco;
+
+	private String distaccoAzienda;
+
+	private Date distaccoData;
 
 	private Date dataInizio;
 
 	private Date dataFine;
 
-	private String costoMese;
-
 	private String tariffaGiornaliera;
-
-	private String nominativo;
-
-	private String azienda;
 
 	private String aziendaDiFatturazioneInterna;
 
-	private Boolean stato;
+	private Boolean attivo;
 
-	private String attesaLavori;
+	private Boolean attesaLavori;
 
-	public Commessa(Integer id, String cliente, String clienteFinale, String titoloPosizione, String distacco,
-			Date dataInizio, Date dataFine, String costoMese, String tariffaGiornaliera, String nominativo,
-			String azienda, String aziendaDiFatturazioneInterna, Boolean stato, String attesaLavori) {
+	public Commessa(Integer id, String aziendaCliente, String clienteFinale, String titoloPosizione, Boolean distacco,
+			String distaccoAzienda, Date distaccoData, Date dataInizio, Date dataFine, String tariffaGiornaliera,
+			String aziendaDiFatturazioneInterna, Boolean attivo, Boolean attesaLavori) {
 		super();
 		this.id = id;
-		this.cliente = cliente;
+		this.aziendaCliente = aziendaCliente;
 		this.clienteFinale = clienteFinale;
 		this.titoloPosizione = titoloPosizione;
 		this.distacco = distacco;
+		this.distaccoAzienda = distaccoAzienda;
+		this.distaccoData = distaccoData;
 		this.dataInizio = dataInizio;
 		this.dataFine = dataFine;
-		this.costoMese = costoMese;
 		this.tariffaGiornaliera = tariffaGiornaliera;
-		this.nominativo = nominativo;
-		this.azienda = azienda;
 		this.aziendaDiFatturazioneInterna = aziendaDiFatturazioneInterna;
-		this.stato = stato;
+		this.attivo = attivo;
 		this.attesaLavori = attesaLavori;
-
 	}
 
 	public Commessa() {
 		super();
 		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(attesaLavori, azienda, aziendaDiFatturazioneInterna, cliente, clienteFinale, costoMese,
-				dataFine, dataInizio, distacco, id, nominativo, stato, tariffaGiornaliera, titoloPosizione);
 	}
 
 	public Commessa(Integer id) {
@@ -78,12 +67,12 @@ public class Commessa {
 		this.id = id;
 	}
 
-	public String getCliente() {
-		return cliente;
+	public String getAziendaCliente() {
+		return aziendaCliente;
 	}
 
-	public void setCliente(String cliente) {
-		this.cliente = cliente;
+	public void setAziendaCliente(String aziendaCliente) {
+		this.aziendaCliente = aziendaCliente;
 	}
 
 	public String getClienteFinale() {
@@ -102,12 +91,28 @@ public class Commessa {
 		this.titoloPosizione = titoloPosizione;
 	}
 
-	public String getDistacco() {
+	public Boolean getDistacco() {
 		return distacco;
 	}
 
-	public void setDistacco(String distacco) {
+	public void setDistacco(Boolean distacco) {
 		this.distacco = distacco;
+	}
+
+	public String getDistaccoAzienda() {
+		return distaccoAzienda;
+	}
+
+	public void setDistaccoAzienda(String distaccoAzienda) {
+		this.distaccoAzienda = distaccoAzienda;
+	}
+
+	public Date getDistaccoData() {
+		return distaccoData;
+	}
+
+	public void setDistaccoData(Date distaccoData) {
+		this.distaccoData = distaccoData;
 	}
 
 	public Date getDataInizio() {
@@ -126,36 +131,12 @@ public class Commessa {
 		this.dataFine = dataFine;
 	}
 
-	public String getCostoMese() {
-		return costoMese;
-	}
-
-	public void setCostoMese(String costoMese) {
-		this.costoMese = costoMese;
-	}
-
 	public String getTariffaGiornaliera() {
 		return tariffaGiornaliera;
 	}
 
 	public void setTariffaGiornaliera(String tariffaGiornaliera) {
 		this.tariffaGiornaliera = tariffaGiornaliera;
-	}
-
-	public String getNominativo() {
-		return nominativo;
-	}
-
-	public void setNominativo(String nominativo) {
-		this.nominativo = nominativo;
-	}
-
-	public String getAzienda() {
-		return azienda;
-	}
-
-	public void setAzienda(String azienda) {
-		this.azienda = azienda;
 	}
 
 	public String getAziendaDiFatturazioneInterna() {
@@ -166,19 +147,19 @@ public class Commessa {
 		this.aziendaDiFatturazioneInterna = aziendaDiFatturazioneInterna;
 	}
 
-	public Boolean getStato() {
-		return stato;
+	public Boolean getAttivo() {
+		return attivo;
 	}
 
-	public void setStato(Boolean stato) {
-		this.stato = stato;
+	public void setAttivo(Boolean attivo) {
+		this.attivo = attivo;
 	}
 
-	public String getAttesaLavori() {
+	public Boolean getAttesaLavori() {
 		return attesaLavori;
 	}
 
-	public void setAttesaLavori(String attesaLavori) {
+	public void setAttesaLavori(Boolean attesaLavori) {
 		this.attesaLavori = attesaLavori;
 	}
 

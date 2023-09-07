@@ -1,7 +1,6 @@
 package it.sincrono.entity;
 
 import java.util.Date;
-import java.util.Objects;
 
 public class Contratto {
 
@@ -9,17 +8,21 @@ public class Contratto {
 
 	private TipoContratto tipoContratto;
 
-	private LivelloContratto livelloContratto;
+	private TipoLivelloContratto tipoLivelloContratto;
 
 	private TipoAzienda tipoAzienda;
 
 	private TipoCcnl tipoCcnl;
 
+	private TipoCanaleReclutamento tipoCanaleReclutamento;
+
+	private TipoCausaFineRapporto tipoCausaFineRapporto;
+
 	private Boolean attivo;
 
-	private String sedeAssunzione;
-
 	private String qualifica;
+
+	private String sedeAssunzione;
 
 	private Date dataAssunzione;
 
@@ -39,26 +42,23 @@ public class Contratto {
 
 	private Boolean partTime;
 
-	private Boolean partTimeA;
+	private Double percentualePartTime;
 
-	private String retribuzioneMensileLorda;
+	private Double retribuzioneMensileLorda;
 
-	private String superminimoMensile;
+	private Double superminimoMensile;
 
-	private String ralAnnua;
+	private Double ralAnnua;
 
-	private String superminimoRal;
+	private Double superminimoRal;
 
-	private String diariaMese;
+	private Double diariaMensile;
 
-	private String diariaGg;
+	private Double diariaGiornaliera;
 
-//	@Column(name = "data_visita_medica")
-//	private Date dataVisitaMedica;
+	private Boolean ticket;
 
-	private String ticket;
-
-	private String valoreTicket;
+	private Double valoreTicket;
 
 	private Boolean categoriaProtetta;
 
@@ -66,38 +66,50 @@ public class Contratto {
 
 	private String pfi;
 
-	private String assicurazioneObbligatoria;
+	private Boolean corsoSicurezza;
 
-	private Date corsoSicurezza;
-
-	private String motivazioneFineRapporto;
+	private Date dataCorsoSicurezza;
 
 	private Boolean pc;
 
-	private String scattiAnzianita;
+	private Boolean visitaMedica;
 
-	private String tariffaPartitaIva;
+	private Date dataVisitaMedica;
 
-	private String canaleReclutamento;
+	private Double scattiAnzianita;
 
-	public Contratto(Integer id, TipoContratto tipoContratto, LivelloContratto livelloContratto,
-			TipoAzienda tipoAzienda, TipoCcnl tipoCcnl, Boolean attivo, String sedeAssunzione, String qualifica,
+	private Double tariffaPartitaIva;
+
+	private Boolean assicurazioneObbligatoria;
+
+	private Double retribuzioneNettaGiornaliera;
+
+	private Double retribuzioneNettaMensile;
+
+	private Integer numeroMensilita;
+
+	public Contratto(Integer id, TipoContratto tipoContratto, TipoLivelloContratto tipoLivelloContratto,
+			TipoAzienda tipoAzienda, TipoCcnl tipoCcnl, TipoCanaleReclutamento tipoCanaleReclutamento,
+			TipoCausaFineRapporto tipoCausaFineRapporto, Boolean attivo, String qualifica, String sedeAssunzione,
 			Date dataAssunzione, Date dataInizioProva, Date dataFineProva, Date dataFineRapporto, Integer mesiDurata,
-			String livelloAttuale, String livelloFinale, Boolean dimissioni, Boolean partTime, Boolean partTimeA,
-			String retribuzioneMensileLorda, String superminimoMensile, String ralAnnua, String superminimoRal,
-			String diariaMese, String diariaGg, String ticket, String valoreTicket, Boolean categoriaProtetta,
-			String tutor, String pfi, String assicurazioneObbligatoria, Date corsoSicurezza,
-			String motivazioneFineRapporto, Boolean pc, String scattiAnzianita, String tariffaPartitaIva,
-			String canaleReclutamento) {
+			String livelloAttuale, String livelloFinale, Boolean dimissioni, Boolean partTime,
+			Double percentualePartTime, Double retribuzioneMensileLorda, Double superminimoMensile, Double ralAnnua,
+			Double superminimoRal, Double diariaMensile, Double diariaGiornaliera, Boolean ticket, Double valoreTicket,
+			Boolean categoriaProtetta, String tutor, String pfi, Boolean corsoSicurezza, Date dataCorsoSicurezza,
+			Boolean pc, Boolean visitaMedica, Date dataVisitaMedica, Double scattiAnzianita, Double tariffaPartitaIva,
+			Boolean assicurazioneObbligatoria, Double retribuzioneNettaGiornaliera, Double retribuzioneNettaMensile,
+			Integer numeroMensilita) {
 		super();
 		this.id = id;
 		this.tipoContratto = tipoContratto;
-		this.livelloContratto = livelloContratto;
+		this.tipoLivelloContratto = tipoLivelloContratto;
 		this.tipoAzienda = tipoAzienda;
 		this.tipoCcnl = tipoCcnl;
+		this.tipoCanaleReclutamento = tipoCanaleReclutamento;
+		this.tipoCausaFineRapporto = tipoCausaFineRapporto;
 		this.attivo = attivo;
-		this.sedeAssunzione = sedeAssunzione;
 		this.qualifica = qualifica;
+		this.sedeAssunzione = sedeAssunzione;
 		this.dataAssunzione = dataAssunzione;
 		this.dataInizioProva = dataInizioProva;
 		this.dataFineProva = dataFineProva;
@@ -107,41 +119,41 @@ public class Contratto {
 		this.livelloFinale = livelloFinale;
 		this.dimissioni = dimissioni;
 		this.partTime = partTime;
-		this.partTimeA = partTimeA;
+		this.percentualePartTime = percentualePartTime;
 		this.retribuzioneMensileLorda = retribuzioneMensileLorda;
 		this.superminimoMensile = superminimoMensile;
 		this.ralAnnua = ralAnnua;
 		this.superminimoRal = superminimoRal;
-		this.diariaMese = diariaMese;
-		this.diariaGg = diariaGg;
+		this.diariaMensile = diariaMensile;
+		this.diariaGiornaliera = diariaGiornaliera;
 		this.ticket = ticket;
 		this.valoreTicket = valoreTicket;
 		this.categoriaProtetta = categoriaProtetta;
 		this.tutor = tutor;
 		this.pfi = pfi;
-		this.assicurazioneObbligatoria = assicurazioneObbligatoria;
 		this.corsoSicurezza = corsoSicurezza;
-		this.motivazioneFineRapporto = motivazioneFineRapporto;
+		this.dataCorsoSicurezza = dataCorsoSicurezza;
 		this.pc = pc;
+		this.visitaMedica = visitaMedica;
+		this.dataVisitaMedica = dataVisitaMedica;
 		this.scattiAnzianita = scattiAnzianita;
 		this.tariffaPartitaIva = tariffaPartitaIva;
-		this.canaleReclutamento = canaleReclutamento;
+		this.assicurazioneObbligatoria = assicurazioneObbligatoria;
+		this.retribuzioneNettaGiornaliera = retribuzioneNettaGiornaliera;
+		this.retribuzioneNettaMensile = retribuzioneNettaMensile;
+		this.numeroMensilita = numeroMensilita;
+	}
 
+	public Contratto(TipoContratto tipoContratto, TipoAzienda tipoAzienda, TipoCcnl tipoCcnl) {
+		super();
+		this.tipoContratto = tipoContratto;
+		this.tipoAzienda = tipoAzienda;
+		this.tipoCcnl = tipoCcnl;
 	}
 
 	public Contratto() {
 		super();
 		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(assicurazioneObbligatoria, attivo, canaleReclutamento, categoriaProtetta, tipoCcnl,
-				corsoSicurezza, dataAssunzione, dataFineProva, dataFineRapporto, dataInizioProva, diariaGg, diariaMese,
-				dimissioni, id, livelloAttuale, livelloContratto, livelloFinale, mesiDurata, motivazioneFineRapporto,
-				partTime, partTimeA, pc, pfi, qualifica, ralAnnua, retribuzioneMensileLorda, scattiAnzianita,
-				sedeAssunzione, superminimoMensile, superminimoRal, tariffaPartitaIva, ticket, tipoAzienda,
-				tipoContratto, tutor, valoreTicket);
 	}
 
 	public Contratto(Integer id) {
@@ -165,12 +177,12 @@ public class Contratto {
 		this.tipoContratto = tipoContratto;
 	}
 
-	public LivelloContratto getLivelloContratto() {
-		return livelloContratto;
+	public TipoLivelloContratto getTipoLivelloContratto() {
+		return tipoLivelloContratto;
 	}
 
-	public void setLivelloContratto(LivelloContratto livelloContratto) {
-		this.livelloContratto = livelloContratto;
+	public void setTipoLivelloContratto(TipoLivelloContratto tipoLivelloContratto) {
+		this.tipoLivelloContratto = tipoLivelloContratto;
 	}
 
 	public TipoAzienda getTipoAzienda() {
@@ -189,6 +201,22 @@ public class Contratto {
 		this.tipoCcnl = tipoCcnl;
 	}
 
+	public TipoCanaleReclutamento getTipoCanaleReclutamento() {
+		return tipoCanaleReclutamento;
+	}
+
+	public void setTipoCanaleReclutamento(TipoCanaleReclutamento tipoCanaleReclutamento) {
+		this.tipoCanaleReclutamento = tipoCanaleReclutamento;
+	}
+
+	public TipoCausaFineRapporto getTipoCausaFineRapporto() {
+		return tipoCausaFineRapporto;
+	}
+
+	public void setTipoCausaFineRapporto(TipoCausaFineRapporto tipoCausaFineRapporto) {
+		this.tipoCausaFineRapporto = tipoCausaFineRapporto;
+	}
+
 	public Boolean getAttivo() {
 		return attivo;
 	}
@@ -197,20 +225,20 @@ public class Contratto {
 		this.attivo = attivo;
 	}
 
-	public String getSedeAssunzione() {
-		return sedeAssunzione;
-	}
-
-	public void setSedeAssunzione(String sedeAssunzione) {
-		this.sedeAssunzione = sedeAssunzione;
-	}
-
 	public String getQualifica() {
 		return qualifica;
 	}
 
 	public void setQualifica(String qualifica) {
 		this.qualifica = qualifica;
+	}
+
+	public String getSedeAssunzione() {
+		return sedeAssunzione;
+	}
+
+	public void setSedeAssunzione(String sedeAssunzione) {
+		this.sedeAssunzione = sedeAssunzione;
 	}
 
 	public Date getDataAssunzione() {
@@ -285,75 +313,75 @@ public class Contratto {
 		this.partTime = partTime;
 	}
 
-	public Boolean getPartTimeA() {
-		return partTimeA;
+	public Double getPercentualePartTime() {
+		return percentualePartTime;
 	}
 
-	public void setPartTimeA(Boolean partTimeA) {
-		this.partTimeA = partTimeA;
+	public void setPercentualePartTime(Double percentualePartTime) {
+		this.percentualePartTime = percentualePartTime;
 	}
 
-	public String getRetribuzioneMensileLorda() {
+	public Double getRetribuzioneMensileLorda() {
 		return retribuzioneMensileLorda;
 	}
 
-	public void setRetribuzioneMensileLorda(String retribuzioneMensileLorda) {
+	public void setRetribuzioneMensileLorda(Double retribuzioneMensileLorda) {
 		this.retribuzioneMensileLorda = retribuzioneMensileLorda;
 	}
 
-	public String getSuperminimoMensile() {
+	public Double getSuperminimoMensile() {
 		return superminimoMensile;
 	}
 
-	public void setSuperminimoMensile(String superminimoMensile) {
+	public void setSuperminimoMensile(Double superminimoMensile) {
 		this.superminimoMensile = superminimoMensile;
 	}
 
-	public String getRalAnnua() {
+	public Double getRalAnnua() {
 		return ralAnnua;
 	}
 
-	public void setRalAnnua(String ralAnnua) {
+	public void setRalAnnua(Double ralAnnua) {
 		this.ralAnnua = ralAnnua;
 	}
 
-	public String getSuperminimoRal() {
+	public Double getSuperminimoRal() {
 		return superminimoRal;
 	}
 
-	public void setSuperminimoRal(String superminimoRal) {
+	public void setSuperminimoRal(Double superminimoRal) {
 		this.superminimoRal = superminimoRal;
 	}
 
-	public String getDiariaMese() {
-		return diariaMese;
+	public Double getDiariaMensile() {
+		return diariaMensile;
 	}
 
-	public void setDiariaMese(String diariaMese) {
-		this.diariaMese = diariaMese;
+	public void setDiariaMensile(Double diariaMensile) {
+		this.diariaMensile = diariaMensile;
 	}
 
-	public String getDiariaGg() {
-		return diariaGg;
+	public Double getDiariaGiornaliera() {
+		return diariaGiornaliera;
 	}
 
-	public void setDiariaGg(String diariaGg) {
-		this.diariaGg = diariaGg;
+	public void setDiariaGiornaliera(Double diariaGiornaliera) {
+		this.diariaGiornaliera = diariaGiornaliera;
 	}
 
-	public String getTicket() {
+	public Boolean getTicket() {
 		return ticket;
 	}
 
-	public void setTicket(String ticket) {
+	public void setTicket(Boolean ticket) {
 		this.ticket = ticket;
 	}
 
-	public String getValoreTicket() {
+	public Double getValoreTicket() {
 		return valoreTicket;
 	}
 
-	public void setValoreTicket(String valoreTicket) {
+	public void setValoreTicket(Double valoreTicket) {
 		this.valoreTicket = valoreTicket;
 	}
 
@@ -381,28 +409,20 @@ public class Contratto {
 		this.pfi = pfi;
 	}
 
-	public String getAssicurazioneObbligatoria() {
-		return assicurazioneObbligatoria;
-	}
-
-	public void setAssicurazioneObbligatoria(String assicurazioneObbligatoria) {
-		this.assicurazioneObbligatoria = assicurazioneObbligatoria;
-	}
-
-	public Date getCorsoSicurezza() {
+	public Boolean getCorsoSicurezza() {
 		return corsoSicurezza;
 	}
 
-	public void setCorsoSicurezza(Date corsoSicurezza) {
+	public void setCorsoSicurezza(Boolean corsoSicurezza) {
 		this.corsoSicurezza = corsoSicurezza;
 	}
 
-	public String getMotivazioneFineRapporto() {
-		return motivazioneFineRapporto;
+	public Date getDataCorsoSicurezza() {
+		return dataCorsoSicurezza;
 	}
 
-	public void setMotivazioneFineRapporto(String motivazioneFineRapporto) {
-		this.motivazioneFineRapporto = motivazioneFineRapporto;
+	public void setDataCorsoSicurezza(Date dataCorsoSicurezza) {
+		this.dataCorsoSicurezza = dataCorsoSicurezza;
 	}
 
 	public Boolean getPc() {
@@ -413,35 +433,68 @@ public class Contratto {
 		this.pc = pc;
 	}
 
-	public String getScattiAnzianita() {
+	public Boolean getVisitaMedica() {
+		return visitaMedica;
+	}
+
+	public void setVisitaMedica(Boolean visitaMedica) {
+		this.visitaMedica = visitaMedica;
+	}
+
+	public Date getDataVisitaMedica() {
+		return dataVisitaMedica;
+	}
+
+	public void setDataVisitaMedica(Date dataVisitaMedica) {
+		this.dataVisitaMedica = dataVisitaMedica;
+	}
+
+	public Double getScattiAnzianita() {
 		return scattiAnzianita;
 	}
 
-	public void setScattiAnzianita(String scattiAnzianita) {
+	public void setScattiAnzianita(Double scattiAnzianita) {
 		this.scattiAnzianita = scattiAnzianita;
 	}
 
-	public String getTariffaPartitaIva() {
+	public Double getTariffaPartitaIva() {
 		return tariffaPartitaIva;
 	}
 
-	public void setTariffaPartitaIva(String tariffaPartitaIva) {
+	public void setTariffaPartitaIva(Double tariffaPartitaIva) {
 		this.tariffaPartitaIva = tariffaPartitaIva;
 	}
 
-	public String getCanaleReclutamento() {
-		return canaleReclutamento;
+	public Boolean getAssicurazioneObbligatoria() {
+		return assicurazioneObbligatoria;
 	}
 
-	public void setCanaleReclutamento(String canaleReclutamento) {
-		this.canaleReclutamento = canaleReclutamento;
+	public void setAssicurazioneObbligatoria(Boolean assicurazioneObbligatoria) {
+		this.assicurazioneObbligatoria = assicurazioneObbligatoria;
 	}
 
-	public Contratto(TipoContratto tipoContratto, TipoAzienda tipoAzienda, TipoCcnl tipoCcnl) {
-		super();
-		this.tipoContratto = tipoContratto;
-		this.tipoAzienda = tipoAzienda;
-		this.tipoCcnl = tipoCcnl;
+	public Double getRetribuzioneNettaGiornaliera() {
+		return retribuzioneNettaGiornaliera;
+	}
+
+	public void setRetribuzioneNettaGiornaliera(Double retribuzioneNettaGiornaliera) {
+		this.retribuzioneNettaGiornaliera = retribuzioneNettaGiornaliera;
+	}
+
+	public Double getRetribuzioneNettaMensile() {
+		return retribuzioneNettaMensile;
+	}
+
+	public void setRetribuzioneNettaMensile(Double retribuzioneNettaMensile) {
+		this.retribuzioneNettaMensile = retribuzioneNettaMensile;
+	}
+
+	public Integer getNumeroMensilita() {
+		return numeroMensilita;
+	}
+
+	public void setNumeroMensilita(Integer numeroMensilita) {
+		this.numeroMensilita = numeroMensilita;
 	}
 
 }

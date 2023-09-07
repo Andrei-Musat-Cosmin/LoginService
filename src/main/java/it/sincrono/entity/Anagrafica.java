@@ -6,17 +6,15 @@ public class Anagrafica {
 
 	private Integer id;
 
-	private Utente utente;
-
-	private Boolean attivo;
-
-	private String aziendaTipo;
+	private String nome;
 
 	private String cognome;
 
-	private String nome;
-
 	private String codiceFiscale;
+
+	private Utente utente;
+
+	private TipoAzienda tipoAzienda;
 
 	private String comuneDiNascita;
 
@@ -44,7 +42,9 @@ public class Anagrafica {
 
 	private Boolean figliACarico;
 
-	public Anagrafica(Integer id, Utente utente, Boolean attivo, String aziendaTipo, String cognome, String nome,
+	private Boolean attivo;
+
+	public Anagrafica(Integer id, Utente utente, Boolean attivo, TipoAzienda tipoAzienda, String cognome, String nome,
 			String codiceFiscale, String comuneDiNascita, Date dataDiNascita, String residenza, String domicilio,
 			String cellularePrivato, String cellulareAziendale, String mailPrivata, String mailAziendale,
 			String mailPec, String titoliDiStudio, String altriTitoli, Boolean coniugato, Boolean figliACarico) {
@@ -52,7 +52,7 @@ public class Anagrafica {
 		this.id = id;
 		this.utente = utente;
 		this.attivo = attivo;
-		this.aziendaTipo = aziendaTipo;
+		this.tipoAzienda = tipoAzienda;
 		this.cognome = cognome;
 		this.nome = nome;
 		this.codiceFiscale = codiceFiscale;
@@ -97,12 +97,12 @@ public class Anagrafica {
 		this.utente = utente;
 	}
 
-	public String getAziendaTipo() {
-		return aziendaTipo;
+	public TipoAzienda getTipoAzienda() {
+		return tipoAzienda;
 	}
 
-	public void setAziendaTipo(String aziendaTipo) {
-		this.aziendaTipo = aziendaTipo;
+	public void setTipoAzienda(TipoAzienda tipoAzienda) {
+		this.tipoAzienda = tipoAzienda;
 	}
 
 	public String getCognome() {
