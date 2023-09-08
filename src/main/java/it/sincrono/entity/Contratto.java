@@ -88,6 +88,8 @@ public class Contratto {
 
 	private Double diariaAnnua;
 
+	private Double ralPartTime;
+
 	public Contratto(Integer id, TipoContratto tipoContratto, TipoLivelloContratto tipoLivelloContratto,
 			TipoAzienda tipoAzienda, TipoCcnl tipoCcnl, TipoCanaleReclutamento tipoCanaleReclutamento,
 			TipoCausaFineRapporto tipoCausaFineRapporto, Boolean attivo, String qualifica, String sedeAssunzione,
@@ -98,7 +100,7 @@ public class Contratto {
 			Boolean categoriaProtetta, String tutor, String pfi, Boolean corsoSicurezza, Date dataCorsoSicurezza,
 			Boolean pc, Boolean visitaMedica, Date dataVisitaMedica, Double scattiAnzianita, Double tariffaPartitaIva,
 			Boolean assicurazioneObbligatoria, Double retribuzioneNettaGiornaliera, Double retribuzioneNettaMensile,
-			Double diariaAnnua) {
+			Double diariaAnnua, Double ralPartTime) {
 		super();
 		this.id = id;
 		this.tipoContratto = tipoContratto;
@@ -142,6 +144,7 @@ public class Contratto {
 		this.retribuzioneNettaGiornaliera = retribuzioneNettaGiornaliera;
 		this.retribuzioneNettaMensile = retribuzioneNettaMensile;
 		this.diariaAnnua = diariaAnnua;
+		this.ralPartTime = ralPartTime;
 	}
 
 	public Contratto(TipoContratto tipoContratto, TipoAzienda tipoAzienda, TipoCcnl tipoCcnl) {
@@ -495,6 +498,14 @@ public class Contratto {
 
 	public void setDiariaAnnua(Double diariaAnnua) {
 		this.diariaAnnua = diariaAnnua;
+	}
+
+	public Double getRalPartTime() {
+		return ralPartTime;
+	}
+
+	public void setRalPartTime(Double ralPartTime) {
+		this.ralPartTime = ralPartTime;
 	}
 
 }
