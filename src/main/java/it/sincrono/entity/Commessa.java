@@ -28,11 +28,9 @@ public class Commessa {
 
 	private Boolean attivo;
 
-	private Boolean attesaLavori;
-
 	public Commessa(Integer id, String aziendaCliente, String clienteFinale, String titoloPosizione, Boolean distacco,
 			String distaccoAzienda, Date distaccoData, Date dataInizio, Date dataFine, String tariffaGiornaliera,
-			String aziendaDiFatturazioneInterna, Boolean attivo, Boolean attesaLavori) {
+			String aziendaDiFatturazioneInterna, Boolean attivo) {
 		super();
 		this.id = id;
 		this.aziendaCliente = aziendaCliente;
@@ -46,7 +44,6 @@ public class Commessa {
 		this.tariffaGiornaliera = tariffaGiornaliera;
 		this.aziendaDiFatturazioneInterna = aziendaDiFatturazioneInterna;
 		this.attivo = attivo;
-		this.attesaLavori = attesaLavori;
 	}
 
 	public Commessa() {
@@ -153,14 +150,6 @@ public class Commessa {
 
 	public void setAttivo(Boolean attivo) {
 		this.attivo = attivo;
-	}
-
-	public Boolean getAttesaLavori() {
-		return attesaLavori;
-	}
-
-	public void setAttesaLavori(Boolean attesaLavori) {
-		this.attesaLavori = attesaLavori;
 	}
 
 }

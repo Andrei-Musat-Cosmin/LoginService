@@ -38,8 +38,6 @@ public class Contratto {
 
 	private String livelloFinale;
 
-	private Boolean dimissioni;
-
 	private Boolean partTime;
 
 	private Double percentualePartTime;
@@ -64,7 +62,7 @@ public class Contratto {
 
 	private String tutor;
 
-	private String pfi;
+	private Boolean pfi;
 
 	private Boolean corsoSicurezza;
 
@@ -94,10 +92,10 @@ public class Contratto {
 			TipoAzienda tipoAzienda, TipoCcnl tipoCcnl, TipoCanaleReclutamento tipoCanaleReclutamento,
 			TipoCausaFineRapporto tipoCausaFineRapporto, Boolean attivo, String qualifica, String sedeAssunzione,
 			Date dataAssunzione, Date dataInizioProva, Date dataFineProva, Date dataFineRapporto, Integer mesiDurata,
-			String livelloAttuale, String livelloFinale, Boolean dimissioni, Boolean partTime,
-			Double percentualePartTime, Double retribuzioneMensileLorda, Double superminimoMensile, Double ralAnnua,
-			Double superminimoRal, Double diariaMensile, Double diariaGiornaliera, Boolean ticket, Double valoreTicket,
-			Boolean categoriaProtetta, String tutor, String pfi, Boolean corsoSicurezza, Date dataCorsoSicurezza,
+			String livelloAttuale, String livelloFinale, Boolean partTime, Double percentualePartTime,
+			Double retribuzioneMensileLorda, Double superminimoMensile, Double ralAnnua, Double superminimoRal,
+			Double diariaMensile, Double diariaGiornaliera, Boolean ticket, Double valoreTicket,
+			Boolean categoriaProtetta, String tutor, Boolean pfi, Boolean corsoSicurezza, Date dataCorsoSicurezza,
 			Boolean pc, Boolean visitaMedica, Date dataVisitaMedica, Double scattiAnzianita, Double tariffaPartitaIva,
 			Boolean assicurazioneObbligatoria, Double retribuzioneNettaGiornaliera, Double retribuzioneNettaMensile,
 			Double diariaAnnua, Double ralPartTime) {
@@ -119,7 +117,6 @@ public class Contratto {
 		this.mesiDurata = mesiDurata;
 		this.livelloAttuale = livelloAttuale;
 		this.livelloFinale = livelloFinale;
-		this.dimissioni = dimissioni;
 		this.partTime = partTime;
 		this.percentualePartTime = percentualePartTime;
 		this.retribuzioneMensileLorda = retribuzioneMensileLorda;
@@ -300,14 +297,6 @@ public class Contratto {
 		this.livelloFinale = livelloFinale;
 	}
 
-	public Boolean getDimissioni() {
-		return dimissioni;
-	}
-
-	public void setDimissioni(Boolean dimissioni) {
-		this.dimissioni = dimissioni;
-	}
-
 	public Boolean getPartTime() {
 		return partTime;
 	}
@@ -404,11 +393,11 @@ public class Contratto {
 		this.tutor = tutor;
 	}
 
-	public String getPfi() {
+	public Boolean getPfi() {
 		return pfi;
 	}
 
-	public void setPfi(String pfi) {
+	public void setPfi(Boolean pfi) {
 		this.pfi = pfi;
 	}
 
