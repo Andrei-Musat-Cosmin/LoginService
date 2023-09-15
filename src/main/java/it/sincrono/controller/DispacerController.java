@@ -80,14 +80,17 @@ public class DispacerController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		String idDB = body.split("\"id\":")[1].split(" ")[0];
+
 		try {
 
 			if (utenteService.isAuthorized(path, auth) != null) {
-				if ((path.equals("delete")) && (utenteService.isCurrentLogged(auth, Integer.valueOf(idDB)) == null)) {
-					genericResponse.setEsito(
-							new Esito(-1, "Utente da eliminare è utilizzato per il login, operazione annulata", null));
-					return httpEntity = new HttpEntity<GenericResponse>(genericResponse);
+				if (path.equals("delete")) {
+					String idDB = body.split("\"id\":")[1].split(" ")[0];
+					if (utenteService.isCurrentLogged(auth, Integer.valueOf(idDB)) == null) {
+						genericResponse.setEsito(new Esito(-1,
+								"Utente da eliminare è utilizzato per il login, operazione annulata", null));
+						return httpEntity = new HttpEntity<GenericResponse>(genericResponse);
+					}
 				}
 				httpEntity = new HttpEntity<GenericResponse>(restClient.sendRequest(
 						"http://localhost:8085/".concat(request.getURI().getPath().substring(10)),
