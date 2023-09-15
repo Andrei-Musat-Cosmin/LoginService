@@ -21,9 +21,27 @@ public class UtenteServiceImpl implements UtenteService {
 			risultato = utenteReposiroty.isAuthorized(percorso, auth);
 		} catch (NoResultException e) {
 			throw new ServiceException(ServiceMessages.NON_AUTORIZZATO);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			throw new ServiceException(ServiceMessages.ERRORE_GENERICO);
 		}
 		return risultato;
+	}
+
+	@Override
+	public Integer isCurrentLogged(String auth, Integer id) throws ServiceException {
+		Integer risultato = null;
+		Integer idDB = null;
+		// GET DELL'ANAGRAFICA PER VISUALIZZARE SE L'ID CORRISPONDE CON QUELLO DA
+		// ELIMINARE
+		try {
+			idDB = utenteReposiroty.getAnagraficaByToken(auth);
+		} catch (NoResultException e) {
+			throw new ServiceException(ServiceMessages.NON_AUTORIZZATO);
+		} catch (Exception e) {
+			throw new ServiceException(ServiceMessages.ERRORE_GENERICO);
+		}
+		if (idDB == id)
+			return null;
+		return idDB;
 	}
 }

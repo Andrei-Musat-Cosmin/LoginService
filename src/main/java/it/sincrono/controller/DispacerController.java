@@ -70,13 +70,28 @@ public class DispacerController {
 		GenericResponse genericResponse = new GenericResponse();
 
 		ServletServerHttpRequest request = new ServletServerHttpRequest(servletRequest);
-
+		String auth = request.getHeaders().getFirst("authorization").substring(7);
+		String path = request.getURI().getPath().substring(9).split("/")[1];
+		String body = null;
 		try {
-			if (utenteService.isAuthorized(request.getURI().getPath().substring(9).split("/")[1],
-					request.getHeaders().getFirst("authorization").substring(7)) != null) {
+			body = getBody(servletRequest).toString();
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String idDB = body.split("\"id\":")[1].split(" ")[0];
+		try {
+
+			if (utenteService.isAuthorized(path, auth) != null) {
+				if ((path.equals("delete")) && (utenteService.isCurrentLogged(auth, Integer.valueOf(idDB)) == null)) {
+					genericResponse.setEsito(
+							new Esito(-1, "Utente da eliminare è utilizzato per il login, operazione annulata", null));
+					return httpEntity = new HttpEntity<GenericResponse>(genericResponse);
+				}
 				httpEntity = new HttpEntity<GenericResponse>(restClient.sendRequest(
 						"http://localhost:8085/".concat(request.getURI().getPath().substring(10)),
-						HttpMethod.resolve(request.getMethodValue()).toString(), getBody(servletRequest).toString()));
+						HttpMethod.resolve(request.getMethodValue()).toString(), body));
 			}
 
 		} catch (ServiceException e) {

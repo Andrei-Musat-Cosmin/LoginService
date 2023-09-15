@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import it.sincrono.entity.Anagrafica;
 import it.sincrono.entity.Utente;
 
 public interface UtenteRepository extends JpaRepository<Utente, Integer>, UtenteCustomRepository {
@@ -13,5 +14,7 @@ public interface UtenteRepository extends JpaRepository<Utente, Integer>, Utente
 
 	// TROVA UN USER DAL TOKEN
 	public Optional<Utente> findByTokenPassword(String token_password);
+
+	
 
 }

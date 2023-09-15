@@ -30,4 +30,24 @@ public class UtenteRepositoryImpl extends BaseRepositoryImpl implements UtenteCu
 		return risultato;
 	}
 
+	@Override
+	public Integer getAnagraficaByToken(String auth) throws RepositoryException {
+		Integer risultato = null;
+		String queryString = "SELECT a.* FROM anagrafica a INNER JOIN utenti b ON a.id_utente = b.id WHERE b.token_password LIKE '{0}'";
+		queryString = queryString.replace("{0}", auth);
+
+		Query query = entityManager.createNativeQuery(queryString);
+		try {
+			Object[] anagraficaDB = (Object[]) query.getSingleResult();
+			if (anagraficaDB != null)
+				if (anagraficaDB[0] != null)
+					risultato = (Integer) anagraficaDB[0];
+		} catch (NoResultException e) {
+			throw new NoResultException();
+		} catch (Exception e) {
+			throw new RepositoryException(e);
+		}
+		return risultato;
+	}
+
 }
