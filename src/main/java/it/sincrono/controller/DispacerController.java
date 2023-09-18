@@ -85,7 +85,7 @@ public class DispacerController {
 
 			if (utenteService.isAuthorized(path, auth) != null) {
 				if (path.equals("delete")) {
-					String idDB = body.split("\"id\":")[1].split(" ")[0];
+					String idDB = body.substring(37).split(",\"nome\":")[0];
 					if (utenteService.isCurrentLogged(auth, Integer.valueOf(idDB)) == null) {
 						genericResponse.setEsito(new Esito(-1,
 								"Utente da eliminare è utilizzato per il login, operazione annulata", null));
