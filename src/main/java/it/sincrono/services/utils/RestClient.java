@@ -102,6 +102,7 @@ public class RestClient {
 		case "list-contratti":
 		case "list-filter":
 		case "list-all-commesse":
+		case "anagrafica-list-contratti":
 			genericResponse = response.readEntity(AnagraficaDtoListResponse.class);
 			break;
 		case "tipo-azienda-map":
