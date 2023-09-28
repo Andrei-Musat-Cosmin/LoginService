@@ -2,111 +2,170 @@ package it.sincrono.entity;
 
 import java.util.Date;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
+
+@Entity
+@Table(name = "contratto")
 public class Contratto {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private Integer id;
 
-	private TipoContratto tipoContratto;
-
-	private TipoLivelloContratto tipoLivelloContratto;
-
-	private TipoAzienda tipoAzienda;
-
-	private TipoCcnl tipoCcnl;
-
-	private TipoCanaleReclutamento tipoCanaleReclutamento;
-
+	@ManyToOne
+	@JoinColumn(name = "id_tipo_causa_fine_rapporto")
 	private TipoCausaFineRapporto tipoCausaFineRapporto;
 
+	@ManyToOne
+	@JoinColumn(name = "id_tipo_canale_reclutamento")
+	private TipoCanaleReclutamento tipoCanaleReclutamento;
+
+	@ManyToOne
+	@JoinColumn(name = "id_tipo_contratto")
+	private TipoContratto tipoContratto;
+
+	@ManyToOne
+	@JoinColumn(name = "id_tipo_livello")
+	private TipoLivelloContratto tipoLivelloContratto;
+
+	@ManyToOne
+	@JoinColumn(name = "id_tipo_azienda")
+	private TipoAzienda tipoAzienda;
+
+	@ManyToOne
+	@JoinColumn(name = "id_tipo_ccnl")
+	private TipoCcnl tipoCcnl;
+
+	@Column(name = "attivo")
 	private Boolean attivo;
 
+	@Column(name = "qualifica")
 	private String qualifica;
 
+	@Column(name = "sede_assunzione")
 	private String sedeAssunzione;
 
+	@Column(name = "data_assunzione")
 	private Date dataAssunzione;
 
+	@Column(name = "data_inizio_prova")
 	private Date dataInizioProva;
 
+	@Column(name = "data_fine_prova")
 	private Date dataFineProva;
 
+	@Column(name = "data_fine_rapporto")
 	private Date dataFineRapporto;
 
+	@Column(name = "mesi_durata")
 	private Integer mesiDurata;
 
+	@Column(name = "livello_attuale")
 	private String livelloAttuale;
 
+	@Column(name = "livello_finale")
 	private String livelloFinale;
 
+	@Column(name = "part_time")
 	private Boolean partTime;
 
+	@Column(name = "percentuale_part_time")
 	private Double percentualePartTime;
 
+	@Column(name = "retribuzione_mensile_lorda")
 	private Double retribuzioneMensileLorda;
 
+	@Column(name = "superminimo_mensile")
 	private Double superminimoMensile;
 
+	@Column(name = "ral_annua")
 	private Double ralAnnua;
 
+	@Column(name = "superminimo_ral")
 	private Double superminimoRal;
 
+	@Column(name = "diaria_mensile")
 	private Double diariaMensile;
 
+	@Column(name = "diaria_giornaliera")
 	private Double diariaGiornaliera;
 
+	@Column(name = "ticket")
 	private Boolean ticket;
 
+	@Column(name = "valore_ticket")
 	private Double valoreTicket;
 
-	private Boolean categoriaProtetta;
-
+	@Column(name = "tutor")
 	private String tutor;
 
+	@Column(name = "pfi")
 	private Boolean pfi;
 
+	@Column(name = "corso_sicurezza")
 	private Boolean corsoSicurezza;
 
+	@Column(name = "data_corso_sicurezza")
 	private Date dataCorsoSicurezza;
 
+	@Column(name = "pc")
 	private Boolean pc;
 
+	@Column(name = "visita_medica")
 	private Boolean visitaMedica;
 
+	@Column(name = "data_visita_medica")
 	private Date dataVisitaMedica;
 
+	@Column(name = "scatti_anzianita")
 	private Double scattiAnzianita;
 
+	@Column(name = "tariffa_partita_iva")
 	private Double tariffaPartitaIva;
 
+	@Column(name = "assicurazione_obbligatoria")
 	private Boolean assicurazioneObbligatoria;
 
+	@Column(name = "retribuzione_netta_giornaliera")
 	private Double retribuzioneNettaGiornaliera;
 
+	@Column(name = "retribuzione_netta_mensile")
 	private Double retribuzioneNettaMensile;
 
+	@Column(name = "diaria_annua")
 	private Double diariaAnnua;
 
-	private Double ralPartTime;
+	@Transient
+	private Double RalPartTime;
 
-	public Contratto(Integer id, TipoContratto tipoContratto, TipoLivelloContratto tipoLivelloContratto,
-			TipoAzienda tipoAzienda, TipoCcnl tipoCcnl, TipoCanaleReclutamento tipoCanaleReclutamento,
-			TipoCausaFineRapporto tipoCausaFineRapporto, Boolean attivo, String qualifica, String sedeAssunzione,
-			Date dataAssunzione, Date dataInizioProva, Date dataFineProva, Date dataFineRapporto, Integer mesiDurata,
-			String livelloAttuale, String livelloFinale, Boolean partTime, Double percentualePartTime,
-			Double retribuzioneMensileLorda, Double superminimoMensile, Double ralAnnua, Double superminimoRal,
-			Double diariaMensile, Double diariaGiornaliera, Boolean ticket, Double valoreTicket,
-			Boolean categoriaProtetta, String tutor, Boolean pfi, Boolean corsoSicurezza, Date dataCorsoSicurezza,
-			Boolean pc, Boolean visitaMedica, Date dataVisitaMedica, Double scattiAnzianita, Double tariffaPartitaIva,
+	public Contratto(Integer id, TipoCausaFineRapporto tipoCausaFineRapporto,
+			TipoCanaleReclutamento tipoCanaleReclutamento, TipoContratto tipoContratto,
+			TipoLivelloContratto tipoLivelloContratto, TipoAzienda tipoAzienda, TipoCcnl tipoCcnl, Boolean attivo,
+			String qualifica, String sedeAssunzione, Date dataAssunzione, Date dataInizioProva, Date dataFineProva,
+			Date dataFineRapporto, Integer mesiDurata, String livelloAttuale, String livelloFinale, Boolean partTime,
+			Double percentualePartTime, Double retribuzioneMensileLorda, Double superminimoMensile, Double ralAnnua,
+			Double superminimoRal, Double diariaMensile, Double diariaGiornaliera, Boolean ticket, Double valoreTicket,
+			String tutor, Boolean pfi, Boolean corsoSicurezza, Date dataCorsoSicurezza, Boolean pc,
+			Boolean visitaMedica, Date dataVisitaMedica, Double scattiAnzianita, Double tariffaPartitaIva,
 			Boolean assicurazioneObbligatoria, Double retribuzioneNettaGiornaliera, Double retribuzioneNettaMensile,
-			Double diariaAnnua, Double ralPartTime) {
+			Double diariaAnnua) {
 		super();
 		this.id = id;
+		this.tipoCausaFineRapporto = tipoCausaFineRapporto;
+		this.tipoCanaleReclutamento = tipoCanaleReclutamento;
 		this.tipoContratto = tipoContratto;
 		this.tipoLivelloContratto = tipoLivelloContratto;
 		this.tipoAzienda = tipoAzienda;
 		this.tipoCcnl = tipoCcnl;
-		this.tipoCanaleReclutamento = tipoCanaleReclutamento;
-		this.tipoCausaFineRapporto = tipoCausaFineRapporto;
 		this.attivo = attivo;
 		this.qualifica = qualifica;
 		this.sedeAssunzione = sedeAssunzione;
@@ -127,7 +186,6 @@ public class Contratto {
 		this.diariaGiornaliera = diariaGiornaliera;
 		this.ticket = ticket;
 		this.valoreTicket = valoreTicket;
-		this.categoriaProtetta = categoriaProtetta;
 		this.tutor = tutor;
 		this.pfi = pfi;
 		this.corsoSicurezza = corsoSicurezza;
@@ -141,24 +199,24 @@ public class Contratto {
 		this.retribuzioneNettaGiornaliera = retribuzioneNettaGiornaliera;
 		this.retribuzioneNettaMensile = retribuzioneNettaMensile;
 		this.diariaAnnua = diariaAnnua;
-		this.ralPartTime = ralPartTime;
 	}
 
-	public Contratto(TipoContratto tipoContratto, TipoAzienda tipoAzienda, TipoCcnl tipoCcnl) {
+	public Contratto(TipoCanaleReclutamento tipoCanaleReclutamento, TipoContratto tipoContratto,
+			TipoAzienda tipoAzienda, TipoCcnl tipoCcnl) {
 		super();
+		this.tipoCanaleReclutamento = tipoCanaleReclutamento;
 		this.tipoContratto = tipoContratto;
 		this.tipoAzienda = tipoAzienda;
 		this.tipoCcnl = tipoCcnl;
 	}
 
+	public Contratto(Integer id) {
+		this.id = id;
+	}
+
 	public Contratto() {
 		super();
 		// TODO Auto-generated constructor stub
-	}
-
-	public Contratto(Integer id) {
-		super();
-		this.id = id;
 	}
 
 	public Integer getId() {
@@ -167,6 +225,22 @@ public class Contratto {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public TipoCausaFineRapporto getTipoCausaFineRapporto() {
+		return tipoCausaFineRapporto;
+	}
+
+	public void setTipoCausaFineRapporto(TipoCausaFineRapporto tipoCausaFineRapporto) {
+		this.tipoCausaFineRapporto = tipoCausaFineRapporto;
+	}
+
+	public TipoCanaleReclutamento getTipoCanaleReclutamento() {
+		return tipoCanaleReclutamento;
+	}
+
+	public void setTipoCanaleReclutamento(TipoCanaleReclutamento tipoCanaleReclutamento) {
+		this.tipoCanaleReclutamento = tipoCanaleReclutamento;
 	}
 
 	public TipoContratto getTipoContratto() {
@@ -199,22 +273,6 @@ public class Contratto {
 
 	public void setTipoCcnl(TipoCcnl tipoCcnl) {
 		this.tipoCcnl = tipoCcnl;
-	}
-
-	public TipoCanaleReclutamento getTipoCanaleReclutamento() {
-		return tipoCanaleReclutamento;
-	}
-
-	public void setTipoCanaleReclutamento(TipoCanaleReclutamento tipoCanaleReclutamento) {
-		this.tipoCanaleReclutamento = tipoCanaleReclutamento;
-	}
-
-	public TipoCausaFineRapporto getTipoCausaFineRapporto() {
-		return tipoCausaFineRapporto;
-	}
-
-	public void setTipoCausaFineRapporto(TipoCausaFineRapporto tipoCausaFineRapporto) {
-		this.tipoCausaFineRapporto = tipoCausaFineRapporto;
 	}
 
 	public Boolean getAttivo() {
@@ -377,14 +435,6 @@ public class Contratto {
 		this.valoreTicket = valoreTicket;
 	}
 
-	public Boolean getCategoriaProtetta() {
-		return categoriaProtetta;
-	}
-
-	public void setCategoriaProtetta(Boolean categoriaProtetta) {
-		this.categoriaProtetta = categoriaProtetta;
-	}
-
 	public String getTutor() {
 		return tutor;
 	}
@@ -490,11 +540,15 @@ public class Contratto {
 	}
 
 	public Double getRalPartTime() {
-		return ralPartTime;
+
+		return this.RalPartTime;
+
 	}
 
 	public void setRalPartTime(Double ralPartTime) {
-		this.ralPartTime = ralPartTime;
+
+		this.RalPartTime = ralPartTime;
+
 	}
 
 }

@@ -2,34 +2,57 @@ package it.sincrono.entity;
 
 import java.util.Date;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "commessa")
 public class Commessa {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private Integer id;
 
+	@Column(name = "azienda_cliente")
 	private String aziendaCliente;
 
+	@Column(name = "cliente_finale")
 	private String clienteFinale;
 
+	@Column(name = "titolo_posizione")
 	private String titoloPosizione;
 
+	@Column(name = "distacco")
 	private Boolean distacco;
 
+	@Column(name = "distacco_azienda")
 	private String distaccoAzienda;
 
+	@Column(name = "distacco_data")
 	private Date distaccoData;
 
+	@Column(name = "data_inizio")
 	private Date dataInizio;
 
+	@Column(name = "data_fine")
 	private Date dataFine;
 
+	@Column(name = "tariffa_giornaliera")
 	private String tariffaGiornaliera;
 
+	@Column(name = "azienda_di_fatturazione_interna")
 	private String aziendaDiFatturazioneInterna;
 
+	@Column(name = "attivo")
 	private Boolean attivo;
 
 	public Commessa(Integer id, String aziendaCliente, String clienteFinale, String titoloPosizione, Boolean distacco,
-			String distaccoAzienda, Date distaccoData, Date dataInizio, Date dataFine, String tariffaGiornaliera,
+			Date distaccoData, String distaccoAzienda, Date dataInizio, Date dataFine, String tariffaGiornaliera,
 			String aziendaDiFatturazioneInterna, Boolean attivo) {
 		super();
 		this.id = id;
@@ -44,6 +67,7 @@ public class Commessa {
 		this.tariffaGiornaliera = tariffaGiornaliera;
 		this.aziendaDiFatturazioneInterna = aziendaDiFatturazioneInterna;
 		this.attivo = attivo;
+
 	}
 
 	public Commessa() {

@@ -1,13 +1,28 @@
 package it.sincrono.entity;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "tipo_livello_contratto")
 public class TipoLivelloContratto {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private Integer id;
 
+	@Column(name = "ccnl")
 	private String ccnl;
 
+	@Column(name = "livello")
 	private String livello;
 
+	@Column(name = "minimi_ret_23")
 	private Double minimiRet23;
 
 	public TipoLivelloContratto(Integer id, String ccnl, String livello, Double minimiRet23) {
@@ -55,5 +70,4 @@ public class TipoLivelloContratto {
 		this.minimiRet23 = minimiRet23;
 	}
 
-	
 }

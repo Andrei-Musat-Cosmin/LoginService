@@ -1,9 +1,22 @@
 package it.sincrono.entity;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "tipo_causa_fine_rapporto")
 public class TipoCausaFineRapporto {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private Integer id;
 
+	@Column(name = "descrizione")
 	private String descrizione;
 
 	public TipoCausaFineRapporto(Integer id, String descrizione) {
@@ -33,5 +46,4 @@ public class TipoCausaFineRapporto {
 		this.descrizione = descrizione;
 	}
 
-	
 }
