@@ -16,11 +16,12 @@ public class UtenteRepositoryImpl extends BaseRepositoryImpl implements UtenteCu
 	@Override
 	public Integer isAuthorized(String percorso, String auth) throws NoResultException, RepositoryException {
 
-		Utente utente = null;
+		Utente utente = new Utente();
 		try {
 			String queryString1 = "SELECT a.* FROM utenti a WHERE a.token_password LIKE '" + auth + "'";
 			Query query = entityManager.createNativeQuery(queryString1);
 
+			utente.setId((Integer) query.getFirstResult());
 			LOGGER.info("Richiesta del servizio: '" + percorso + "' da parte di:" + utente.getUsername() + ".");
 
 			String queryString2 = "SELECT a.* FROM utenti a JOIN profili b ON  a.id = b.id_utente "
@@ -33,7 +34,7 @@ public class UtenteRepositoryImpl extends BaseRepositoryImpl implements UtenteCu
 
 			query = entityManager.createNativeQuery(queryString2);
 
-			utente = (Utente) query.getSingleResult();
+			utente.setId((Integer) query.getFirstResult());
 
 		} catch (NoResultException e) {
 			throw new NoResultException();
