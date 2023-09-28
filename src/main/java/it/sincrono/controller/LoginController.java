@@ -1,5 +1,7 @@
 package it.sincrono.controller;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,6 +24,7 @@ import it.sincrono.services.utils.RestClient;
 @RequestMapping("/login-service")
 @CrossOrigin()
 public class LoginController {
+	private static final Logger LOGGER = LogManager.getLogger(DispacerController.class);
 
 	@Autowired
 	private LoginService loginService;
@@ -36,17 +39,16 @@ public class LoginController {
 
 		LoginResponse authenticationResponse = new LoginResponse();
 
+		LOGGER.info("Richiesta di login da parte di:" + request.getEmail() + ".");
+
 		try {
 
-			System.out.println("Start invocation of method authenticate of Authentication Service");
-
 			authenticationResponse.setToken(loginService.login(request).getToken());
-
-			System.out.println("End invocation of method authenticate of Authentication Service");
 
 			httpEntity = new HttpEntity<LoginResponse>(authenticationResponse);
 
 		} catch (ServiceException e) {
+			LOGGER.error(e.getMessage());
 			authenticationResponse.setEsito(new Esito(e.getCode(), e.getMessage(), null));
 			httpEntity = new HttpEntity<LoginResponse>(authenticationResponse);
 		}
@@ -62,30 +64,30 @@ public class LoginController {
 		GenericResponse genericResponse = new GenericResponse();
 		EmailRequest emailRequest = new EmailRequest(null, null, null, null, null);
 		try {
-
-			System.out.println("Start invocation of method authenticate of Authentication Service");
+			LOGGER.info("Richiesta di recupero password da parte di: " + request.getUsername() + ".");
 
 			String jwtToken = loginService.recuperoPassword(request.getUsername());
-
-			System.out.println("End invocation of method authenticate of Authentication Service");
-
-			httpEntity = new HttpEntity<GenericResponse>(genericResponse);
 
 			emailRequest.setTo(request.getUsername());
 			emailRequest.setSubject("Link per il recupero password");
 			emailRequest.setBody("http://localhost:4200/form-recupero-password/" + jwtToken
 					+ " Se non sei stato te a richiedere il reset della password," + " per favore ignora questa email");
 
-			System.out.println(emailRequest);
-			restClient.sendRequest("http://localhost:8085/mail/send", "POST", emailRequest.toString());
+			genericResponse = restClient.sendRequest("http://localhost:8085/mail/send", "POST",
+					emailRequest.toString());
 
 		} catch (ServiceException e) {
+			LOGGER.error(e.getMessage());
 			genericResponse.setEsito(new Esito(e.getCode(), e.getMessage(), null));
 			httpEntity = new HttpEntity<GenericResponse>(genericResponse);
 		} catch (Exception e) {
+			LOGGER.error(e.getMessage());
 			genericResponse.setEsito(new Esito(500, e.getMessage(), null));
 			httpEntity = new HttpEntity<GenericResponse>(genericResponse);
 		}
+		LOGGER.info("Esito code: " + genericResponse.getEsito().getCode() + "; Esito message: "
+				+ genericResponse.getEsito().getTarget());
+
 		return httpEntity;
 	}
 

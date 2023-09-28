@@ -3,6 +3,8 @@ package it.sincrono.controller;
 import java.io.BufferedReader;
 import java.io.IOException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -26,6 +28,7 @@ import jakarta.servlet.http.HttpServletRequest;
 @RequestMapping("/services")
 @CrossOrigin()
 public class DispacerController {
+	private static final Logger LOGGER = LogManager.getLogger(DispacerController.class);
 
 	@Autowired
 	private LoginService loginService;
@@ -42,7 +45,6 @@ public class DispacerController {
 
 		GenericResponse genericResponse = new GenericResponse();
 		try {
-
 			loginService.logout(logoutRequest.getToken());
 
 			genericResponse.setEsito(new Esito());
@@ -50,11 +52,11 @@ public class DispacerController {
 			httpEntity = new HttpEntity<GenericResponse>(genericResponse);
 
 		} catch (ServiceException e) {
-			String[] messaggio = new String[1];
-			messaggio[0] = "Utente non autorizzato";
-			genericResponse.setEsito(new Esito(e.getCode(), e.getMessage(), messaggio));
+			LOGGER.error(e.getMessage());
+			genericResponse.setEsito(new Esito(e.getCode(), e.getMessage(), null));
 			httpEntity = new HttpEntity<GenericResponse>(genericResponse);
 		} catch (Exception e) {
+			LOGGER.error(e.getMessage());
 			genericResponse.setEsito(new Esito(500, e.getMessage(), null));
 			httpEntity = new HttpEntity<GenericResponse>(genericResponse);
 		}
@@ -82,11 +84,11 @@ public class DispacerController {
 		}
 
 		try {
-
 			if (utenteService.isAuthorized(path, auth) != null) {
 				if (path.equals("delete")) {
 					String idDB = body.substring(37).split(",\"nome\":")[0];
 					if (utenteService.isCurrentLogged(auth, Integer.valueOf(idDB)) == null) {
+						LOGGER.info("Utente da eliminare è utilizzato per il login, operazione annulata");
 						genericResponse.setEsito(new Esito(-1,
 								"Utente da eliminare è utilizzato per il login, operazione annulata", null));
 						return httpEntity = new HttpEntity<GenericResponse>(genericResponse);
@@ -98,11 +100,11 @@ public class DispacerController {
 			}
 
 		} catch (ServiceException e) {
-			String[] messaggio = new String[1];
-			messaggio[0] = "Utente non autorizzato";
-			genericResponse.setEsito(new Esito(e.getCode(), e.getMessage(), messaggio));
+			LOGGER.info(e.getMessage());
+			genericResponse.setEsito(new Esito(e.getCode(), e.getMessage(), null));
 			httpEntity = new HttpEntity<GenericResponse>(genericResponse);
 		} catch (Exception e) {
+			LOGGER.info(e.getMessage());
 			genericResponse.setEsito(new Esito(500, e.getMessage(), null));
 			httpEntity = new HttpEntity<GenericResponse>(genericResponse);
 		}
