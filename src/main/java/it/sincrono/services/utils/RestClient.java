@@ -17,6 +17,7 @@ import it.sincrono.responses.FunzioniListResponse;
 import it.sincrono.responses.GenericResponse;
 import it.sincrono.responses.OperazioniListResponse;
 import it.sincrono.responses.OrganicoDtoListResponse;
+import it.sincrono.responses.RapportinoDtoResponse;
 import it.sincrono.responses.RuoloListResponse;
 import it.sincrono.responses.TipologicheListResponse;
 
@@ -113,6 +114,9 @@ public class RestClient {
 		case "tipo-canale-reclutamento-map":
 		case "livelli-by-ccnl":
 			genericResponse = response.readEntity(TipologicheListResponse.class);
+			break;
+		case "get-rapportino":
+			genericResponse = response.readEntity(RapportinoDtoResponse.class);
 			break;
 		default:
 			// Se nessun caso corrisponde, gestiamo di default
