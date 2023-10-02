@@ -73,7 +73,7 @@ public class DispacerController {
 
 		ServletServerHttpRequest request = new ServletServerHttpRequest(servletRequest);
 		String auth = request.getHeaders().getFirst("authorization").substring(7);
-		String path = request.getURI().getPath().substring(9).split("/")[1];
+		String path = request.getURI().getPath().replaceAll("%20", " ").substring(9).split("/")[1];
 		String body = null;
 		try {
 			body = getBody(servletRequest).toString();
