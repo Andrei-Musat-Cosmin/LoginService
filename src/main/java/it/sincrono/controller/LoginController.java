@@ -24,7 +24,7 @@ import it.sincrono.services.utils.RestClient;
 @RequestMapping("/login-service")
 @CrossOrigin()
 public class LoginController {
-	private static final Logger LOGGER = LogManager.getLogger(DispacerController.class);
+	private static final Logger LOGGER = LogManager.getLogger(LoginController.class);
 
 	@Autowired
 	private LoginService loginService;

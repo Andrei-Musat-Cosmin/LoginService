@@ -3,7 +3,6 @@ package it.sincrono.repositories.impl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import it.sincrono.controller.DispacerController;
 import it.sincrono.entity.Utente;
 import it.sincrono.repositories.UtenteCustomRepository;
 import it.sincrono.repositories.exceptions.RepositoryException;
@@ -11,7 +10,7 @@ import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
 
 public class UtenteRepositoryImpl extends BaseRepositoryImpl implements UtenteCustomRepository {
-	private static final Logger LOGGER = LogManager.getLogger(DispacerController.class);
+	private static final Logger LOGGER = LogManager.getLogger(UtenteRepositoryImpl.class);
 
 	@Override
 	public Integer isAuthorized(String percorso, String auth) throws NoResultException, RepositoryException {

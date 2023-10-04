@@ -4,6 +4,9 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.Invocation;
 import javax.ws.rs.core.Response;
 
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
@@ -23,6 +26,8 @@ import it.sincrono.responses.TipologicheListResponse;
 
 @Component
 public class RestClient {
+	private static final Logger LOGGER = LogManager.getLogger(RestClient.class);
+
 	private ResteasyClient client;
 
 	public RestClient() {
@@ -56,9 +61,7 @@ public class RestClient {
 			throw new RuntimeException("HTTP error code: " + response.getStatus());
 		}
 
-		System.out.println("response: " + response.getEntity().getClass());
-
-		// System.out.println(" tag: "+response.getEntityTag().getClass());
+		LOGGER.log(Level.INFO, "Response: " + response.getEntity().getClass());
 
 		GenericResponse responseBody = readEntity(response, method, url.substring(9).split("/")[1]);
 		response.close();

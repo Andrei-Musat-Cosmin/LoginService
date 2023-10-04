@@ -1,5 +1,6 @@
 package it.sincrono.services.impl;
 
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,14 +42,15 @@ public class LoginServiceImpl implements LoginService {
 				utente.setTokenPassword(jwtToken);
 				utenteReposiroty.saveAndFlush(utente);
 
-				LOGGER.info("Utente loggato con successo.");
-
+				LOGGER.log(Level.INFO, "Utente loggato con successo.");
 				return new LoginResponse(jwtToken);
 			} else {
+				LOGGER.log(Level.ERROR, "Utente con email: \"" + request.getEmail() + "\" e' disattivato");
 				throw new ServiceException(ServiceMessages.UTENTE_DISATTIVATO);
 			}
 
-		} catch (AuthenticationException ae) {
+		} catch (AuthenticationException e) {
+			LOGGER.log(Level.ERROR, e.getMessage());
 			throw new ServiceException(ServiceMessages.CREDENZIALI_ERRATE);
 		}
 	}
@@ -62,7 +64,8 @@ public class LoginServiceImpl implements LoginService {
 			utente.setTokenPassword(jwtToken);
 			utenteReposiroty.saveAndFlush(utente);
 			return jwtToken;
-		} catch (EntityNotFoundException efx) {
+		} catch (EntityNotFoundException e) {
+			LOGGER.log(Level.ERROR, e.getMessage());
 			throw new EntityNotFoundException();
 		}
 
@@ -71,7 +74,7 @@ public class LoginServiceImpl implements LoginService {
 	@Override
 	public void logout(String token_password) throws ServiceException, RepositoryException {
 		var utente = utenteReposiroty.findByTokenPassword(token_password).orElseThrow();
-		LOGGER.info("Richiesta di logout da parte dell'utente:" + utente.getUsername());
+		LOGGER.info("Richiesta di logout da parte dell'utente: \"" + utente.getUsername() + "\".");
 		utente.setTokenPassword(null);
 		utenteReposiroty.save(utente);
 		LOGGER.info("Utente sloggato correttamente.");
