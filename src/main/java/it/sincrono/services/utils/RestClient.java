@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 import it.sincrono.responses.AnagraficaDtoListResponse;
 import it.sincrono.responses.AnagraficaDtoResponse;
 import it.sincrono.responses.CommessaListResponse;
+import it.sincrono.responses.ConfiguratorListResponse;
 import it.sincrono.responses.ContrattoListResponse;
 import it.sincrono.responses.FunzioniListResponse;
 import it.sincrono.responses.GenericResponse;
@@ -117,6 +118,9 @@ public class RestClient {
 		case "tipo-canale-reclutamento-map":
 		case "livelli-by-ccnl":
 			genericResponse = response.readEntity(TipologicheListResponse.class);
+			break;
+		case "get-list-configurator":
+			genericResponse = response.readEntity(ConfiguratorListResponse.class);
 			break;
 		case "get-rapportino":
 			genericResponse = response.readEntity(RapportinoDtoResponse.class);
