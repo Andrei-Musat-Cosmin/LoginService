@@ -4,22 +4,22 @@ import java.util.List;
 
 public class MeseDto {
 
-	private List<GiornoDto> mese;
+	private List<GiornoDto> giorni;
 
-	public MeseDto(List<GiornoDto> mese) {
+	public MeseDto(List<GiornoDto> giorni) {
 		super();
-		this.mese = mese;
+		this.giorni = giorni;
 	}
 
 	public MeseDto() {
 	}
 
-	public List<GiornoDto> getMese() {
-		return mese;
+	public List<GiornoDto> getGiorni() {
+		return giorni;
 	}
 
-	public void setMese(List<GiornoDto> mese) {
-		this.mese = mese;
+	public void setGiorni(List<GiornoDto> giorni) {
+		this.giorni = giorni;
 	}
 
 }
