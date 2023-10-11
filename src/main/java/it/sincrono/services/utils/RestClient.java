@@ -21,6 +21,7 @@ import it.sincrono.responses.FunzioniListResponse;
 import it.sincrono.responses.GenericResponse;
 import it.sincrono.responses.OperazioniListResponse;
 import it.sincrono.responses.OrganicoDtoListResponse;
+import it.sincrono.responses.RapportiniInviatiListResponse;
 import it.sincrono.responses.RapportinoDtoResponse;
 import it.sincrono.responses.RuoloListResponse;
 import it.sincrono.responses.TipologicheListResponse;
@@ -127,7 +128,7 @@ public class RestClient {
 			break;
 		case "list-not-freeze":
 		case "list-freeze":
-			genericResponse = response.readEntity(RapportinoDtoResponse.class);
+			genericResponse = response.readEntity(RapportiniInviatiListResponse.class);
 			break;
 		default:
 			// Se nessun caso corrisponde, gestiamo di default
