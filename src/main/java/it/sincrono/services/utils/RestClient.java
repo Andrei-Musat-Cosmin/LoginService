@@ -125,6 +125,10 @@ public class RestClient {
 		case "get-rapportino":
 			genericResponse = response.readEntity(RapportinoDtoResponse.class);
 			break;
+		case "list-not-freeze":
+		case "list-freeze":
+			genericResponse = response.readEntity(RapportinoDtoResponse.class);
+			break;
 		default:
 			// Se nessun caso corrisponde, gestiamo di default
 			genericResponse = response.readEntity(GenericResponse.class);
