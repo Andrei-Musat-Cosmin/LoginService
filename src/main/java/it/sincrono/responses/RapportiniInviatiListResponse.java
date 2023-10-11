@@ -2,9 +2,8 @@ package it.sincrono.responses;
 
 import java.util.List;
 
-
 import it.sincrono.beans.Esito;
-import it.sincrono.entities.RapportinoInviato;
+import it.sincrono.entity.RapportinoInviato;
 
 public class RapportiniInviatiListResponse extends GenericResponse {
 	private List<RapportinoInviato> list;
