@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 import it.sincrono.responses.AnagraficaDtoListResponse;
 import it.sincrono.responses.AnagraficaDtoResponse;
+import it.sincrono.responses.CheckRapportinoInviatoResponse;
 import it.sincrono.responses.CommessaListResponse;
 import it.sincrono.responses.ConfiguratorListResponse;
 import it.sincrono.responses.ContrattoListResponse;
@@ -129,6 +130,9 @@ public class RestClient {
 		case "list-not-freeze":
 		case "list-freeze":
 			genericResponse = response.readEntity(RapportiniInviatiListResponse.class);
+			break;
+		case "get-check-rapportino-inviato":
+			genericResponse = response.readEntity(CheckRapportinoInviatoResponse.class);
 			break;
 		default:
 			// Se nessun caso corrisponde, gestiamo di default
