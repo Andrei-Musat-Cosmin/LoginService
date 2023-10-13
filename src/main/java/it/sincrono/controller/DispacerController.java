@@ -3,11 +3,11 @@ package it.sincrono.controller;
 import java.io.BufferedReader;
 import java.io.IOException;
 
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.server.ServletServerHttpRequest;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -96,15 +96,15 @@ public class DispacerController {
 				}
 				httpEntity = new HttpEntity<GenericResponse>(restClient.sendRequest(
 						"http://localhost:8085/".concat(request.getURI().getPath().substring(10)),
-						HttpMethod.resolve(request.getMethodValue()).toString(), body));
+						servletRequest.getMethod(), body));
 			}
 
 		} catch (ServiceException e) {
-			LOGGER.info(e.getMessage());
+			LOGGER.log(Level.ERROR, e.getMessage());
 			genericResponse.setEsito(new Esito(e.getCode(), e.getMessage(), null));
 			httpEntity = new HttpEntity<GenericResponse>(genericResponse);
 		} catch (Exception e) {
-			LOGGER.info(e.getMessage());
+			LOGGER.log(Level.ERROR, e.getMessage());
 			genericResponse.setEsito(new Esito(500, e.getMessage(), null));
 			httpEntity = new HttpEntity<GenericResponse>(genericResponse);
 		}

@@ -23,6 +23,7 @@ import it.sincrono.responses.GenericResponse;
 import it.sincrono.responses.OperazioniListResponse;
 import it.sincrono.responses.OrganicoDtoListResponse;
 import it.sincrono.responses.RapportiniInviatiListResponse;
+import it.sincrono.responses.RapportinoB64Response;
 import it.sincrono.responses.RapportinoDtoResponse;
 import it.sincrono.responses.RuoloListResponse;
 import it.sincrono.responses.TipologicheListResponse;
@@ -133,6 +134,9 @@ public class RestClient {
 			break;
 		case "get-check-rapportino-inviato":
 			genericResponse = response.readEntity(CheckRapportinoInviatoResponse.class);
+			break;
+		case "export-rapportino":
+			genericResponse = response.readEntity(RapportinoB64Response.class);
 			break;
 		default:
 			// Se nessun caso corrisponde, gestiamo di default
