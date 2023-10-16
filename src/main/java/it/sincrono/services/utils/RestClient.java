@@ -18,6 +18,7 @@ import it.sincrono.responses.CheckRapportinoInviatoResponse;
 import it.sincrono.responses.CommessaListResponse;
 import it.sincrono.responses.ConfiguratorListResponse;
 import it.sincrono.responses.ContrattoListResponse;
+import it.sincrono.responses.DocumentResponse;
 import it.sincrono.responses.FunzioniListResponse;
 import it.sincrono.responses.GenericResponse;
 import it.sincrono.responses.OperazioniListResponse;
@@ -137,6 +138,9 @@ public class RestClient {
 			break;
 		case "export-rapportino":
 			genericResponse = response.readEntity(RapportinoB64Response.class);
+			break;
+		case "get-document-image":
+			genericResponse = response.readEntity(DocumentResponse.class);
 			break;
 		default:
 			// Se nessun caso corrisponde, gestiamo di default
