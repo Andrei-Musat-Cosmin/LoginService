@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -18,8 +20,9 @@ public class Commessa {
 	@Column(name = "id")
 	private Integer id;
 
-	@Column(name = "azienda_cliente")
-	private String aziendaCliente;
+	@ManyToOne
+	@JoinColumn(name = "id_tipo_azienda")
+	private TipoAzienda tipoAzienda;
 
 	@Column(name = "cliente_finale")
 	private String clienteFinale;
@@ -51,12 +54,12 @@ public class Commessa {
 	@Column(name = "attivo")
 	private Boolean attivo;
 
-	public Commessa(Integer id, String aziendaCliente, String clienteFinale, String titoloPosizione, Boolean distacco,
+	public Commessa(Integer id, TipoAzienda tipoAzienda, String clienteFinale, String titoloPosizione, Boolean distacco,
 			Date distaccoData, String distaccoAzienda, Date dataInizio, Date dataFine, String tariffaGiornaliera,
 			String aziendaDiFatturazioneInterna, Boolean attivo) {
 		super();
 		this.id = id;
-		this.aziendaCliente = aziendaCliente;
+		this.tipoAzienda = tipoAzienda;
 		this.clienteFinale = clienteFinale;
 		this.titoloPosizione = titoloPosizione;
 		this.distacco = distacco;
@@ -88,12 +91,12 @@ public class Commessa {
 		this.id = id;
 	}
 
-	public String getAziendaCliente() {
-		return aziendaCliente;
+	public TipoAzienda getTipoAzienda() {
+		return tipoAzienda;
 	}
 
-	public void setAziendaCliente(String aziendaCliente) {
-		this.aziendaCliente = aziendaCliente;
+	public void setTipoAzienda(TipoAzienda tipoAzienda) {
+		this.tipoAzienda = tipoAzienda;
 	}
 
 	public String getClienteFinale() {
