@@ -21,8 +21,8 @@ public class Commessa {
 	private Integer id;
 
 	@ManyToOne
-	@JoinColumn(name = "id_tipo_azienda")
-	private TipoAzienda tipoAzienda;
+	@JoinColumn(name = "id_tipo_azienda_cliente")
+	private TipoAziendaCliente tipoAziendaCliente;
 
 	@Column(name = "cliente_finale")
 	private String clienteFinale;
@@ -54,12 +54,12 @@ public class Commessa {
 	@Column(name = "attivo")
 	private Boolean attivo;
 
-	public Commessa(Integer id, TipoAzienda tipoAzienda, String clienteFinale, String titoloPosizione, Boolean distacco,
-			Date distaccoData, String distaccoAzienda, Date dataInizio, Date dataFine, String tariffaGiornaliera,
-			String aziendaDiFatturazioneInterna, Boolean attivo) {
+	public Commessa(Integer id, TipoAziendaCliente tipoAziendaCliente, String clienteFinale, String titoloPosizione,
+			Boolean distacco, Date distaccoData, String distaccoAzienda, Date dataInizio, Date dataFine,
+			String tariffaGiornaliera, String aziendaDiFatturazioneInterna, Boolean attivo) {
 		super();
 		this.id = id;
-		this.tipoAzienda = tipoAzienda;
+		this.tipoAziendaCliente = tipoAziendaCliente;
 		this.clienteFinale = clienteFinale;
 		this.titoloPosizione = titoloPosizione;
 		this.distacco = distacco;
@@ -91,12 +91,12 @@ public class Commessa {
 		this.id = id;
 	}
 
-	public TipoAzienda getTipoAzienda() {
-		return tipoAzienda;
+	public TipoAziendaCliente getTipoAziendaCliente() {
+		return tipoAziendaCliente;
 	}
 
-	public void setTipoAzienda(TipoAzienda tipoAzienda) {
-		this.tipoAzienda = tipoAzienda;
+	public void setTipoAziendaCliente(TipoAziendaCliente tipoAziendaCliente) {
+		this.tipoAziendaCliente = tipoAziendaCliente;
 	}
 
 	public String getClienteFinale() {
