@@ -52,7 +52,7 @@ public class JwtService {
 		return Jwts.builder().setClaims(extraClaims).setSubject(userDetails.getUsername()) // L'UTENTE ALLA QUALE VIENE
 																							// ASSEGNATO IL TOKEN
 				.setIssuedAt(new Date(System.currentTimeMillis())) // DATA DI LOGIN O CREAZIONE DEL TOKEN
-				.setExpiration(new Date(System.currentTimeMillis() + 28800000)) // DATA DI SCADENTA DEL TOKEN
+				.setExpiration(new Date(System.currentTimeMillis() + 32400000)) // DATA DI SCADENTA DEL TOKEN
 				.signWith(getSignInKey(), SignatureAlgorithm.HS256) // QUALE CHIAVE USARE E LA LUNGHEZZA
 				.compact();
 	}
