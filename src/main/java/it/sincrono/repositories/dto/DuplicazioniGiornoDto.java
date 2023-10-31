@@ -2,8 +2,6 @@ package it.sincrono.repositories.dto;
 
 public class DuplicazioniGiornoDto {
 
-	private Integer giorno;
-
 	private String cliente;
 
 	private Double oreOrdinarie;
@@ -18,23 +16,14 @@ public class DuplicazioniGiornoDto {
 		super();
 	}
 
-	public DuplicazioniGiornoDto(Integer giorno, String cliente, Double oreOrdinarie, Double fascia1, Double fascia2,
-			Double fascia3) {
+	public DuplicazioniGiornoDto(String cliente, Double oreOrdinarie, Double fascia1, Double fascia2, Double fascia3) {
 		super();
-		this.giorno = giorno;
+
 		this.cliente = cliente;
 		this.oreOrdinarie = oreOrdinarie;
 		this.fascia1 = fascia1;
 		this.fascia2 = fascia2;
 		this.fascia3 = fascia3;
-	}
-
-	public Integer getGiorno() {
-		return giorno;
-	}
-
-	public void setGiorno(Integer giorno) {
-		this.giorno = giorno;
 	}
 
 	public String getCliente() {
