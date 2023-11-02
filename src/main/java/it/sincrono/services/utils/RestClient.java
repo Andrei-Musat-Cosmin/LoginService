@@ -132,7 +132,9 @@ public class RestClient {
 			break;
 		case "list-not-freeze":
 		case "list-freeze":
-			genericResponse = response.readEntity(RapportiniInviatiListResponse.class);
+		case "list-freeze-filter":
+		case "list-not-freeze-filter":
+			genericResponse = response.readEntity(AnagraficaDtoListResponse.class);
 			break;
 		case "get-check-rapportino-inviato":
 			genericResponse = response.readEntity(CheckRapportinoInviatoResponse.class);
