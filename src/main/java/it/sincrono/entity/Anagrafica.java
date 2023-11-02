@@ -5,6 +5,7 @@ import java.util.Date;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -16,7 +17,7 @@ import jakarta.persistence.Table;
 public class Anagrafica {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Integer id;
 
@@ -93,6 +94,9 @@ public class Anagrafica {
 
 	@Column(name = "categoria_protetta")
 	private Boolean categoriaProtetta;
+	
+    private transient Boolean checkInviato; 
+
 
 	public Anagrafica(Integer id, Utente utente, TipoAzienda tipoAzienda, String nome, String cognome,
 			String codiceFiscale, String comuneDiNascita, Date dataDiNascita, String residenza, String domicilio,
@@ -126,6 +130,11 @@ public class Anagrafica {
 		this.statoDiNascita = statoDiNascita;
 		this.provinciaDiNascita = provinciaDiNascita;
 		this.categoriaProtetta = categoriaProtetta;
+	}
+
+	public Anagrafica(String codiceFiscale) {
+		super();
+		this.codiceFiscale = codiceFiscale;
 	}
 
 	public Anagrafica() {
@@ -337,5 +346,15 @@ public class Anagrafica {
 	public void setCategoriaProtetta(Boolean categoriaProtetta) {
 		this.categoriaProtetta = categoriaProtetta;
 	}
+
+	public Boolean getCheckInviato() {
+		return checkInviato;
+	}
+
+	public void setCheckInviato(Boolean checkInviato) {
+		this.checkInviato = checkInviato;
+	}
+	
+	
 
 }

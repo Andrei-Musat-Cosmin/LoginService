@@ -2,8 +2,6 @@ package it.sincrono.repositories.dto;
 
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonView;
-
 import it.sincrono.entity.Anagrafica;
 import it.sincrono.entity.Commessa;
 import it.sincrono.entity.Contratto;
@@ -11,15 +9,12 @@ import it.sincrono.entity.Ruolo;
 
 public class AnagraficaDto {
 
-	@JsonView(Anagrafica.class)
 	private Anagrafica anagrafica;
 
-	@JsonView(Contratto.class)
 	private Contratto contratto;
 
 	private List<Commessa> commesse;
 
-	@JsonView(Ruolo.class)
 	private Ruolo ruolo;
 
 	public AnagraficaDto(Anagrafica anagrafica, Contratto contratto, List<Commessa> commesse, Ruolo ruolo) {
