@@ -2,10 +2,13 @@ package it.sincrono.controller;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.server.ServletServerHttpRequest;
@@ -72,35 +75,33 @@ public class DispacerController {
 		GenericResponse genericResponse = new GenericResponse();
 
 		ServletServerHttpRequest request = new ServletServerHttpRequest(servletRequest);
+		String token = null;
+		String bodyString = null;
 		String auth = request.getHeaders().getFirst("authorization").substring(7);
 		String path = request.getURI().getPath().replaceAll("%20", " ").substring(9).split("/")[1];
-		String body = null;
+		if (path.equals("dettaglio-token"))
+			token = request.getURI().getPath().replaceAll("%20", " ").substring(9).split("/")[2];
+		JSONObject body = null;
 		try {
-			body = getBody(servletRequest).toString();
+
+			body = getBody(servletRequest);
+			if (body != null)
+				bodyString = body.toString();
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.log(Level.ERROR, e.getMessage());
+			genericResponse.setEsito(new Esito(500, e.getMessage(), null));
+			httpEntity = new HttpEntity<GenericResponse>(genericResponse);
 		}
 
 		try {
-			if (utenteService.isAuthorized(path, auth) != null) {
-				if (path.equals("delete")) {
-					String idDB = body.substring(37).split(",\"nome\":")[0];
-					if (utenteService.isCurrentLogged(auth, Integer.valueOf(idDB)) == null) {
-						LOGGER.info("Utente da eliminare è utilizzato per il login, operazione annulata");
-						genericResponse.setEsito(new Esito(-1,
-								"Utente da eliminare è utilizzato per il login, operazione annulata", null));
-						return httpEntity = new HttpEntity<GenericResponse>(genericResponse);
-					}
-				}
+			if (utenteService.isUtenteAuthorized(path, auth, body, token)) {
 				httpEntity = new HttpEntity<GenericResponse>(restClient.sendRequest(
 						"http://localhost:8085/".concat(request.getURI().getPath().substring(10)),
-						servletRequest.getMethod(), body));
+						servletRequest.getMethod(), bodyString));
 			}
 
 		} catch (ServiceException e) {
-			LOGGER.log(Level.ERROR, e.getMessage());
 			genericResponse.setEsito(new Esito(e.getCode(), e.getMessage(), null));
 			httpEntity = new HttpEntity<GenericResponse>(genericResponse);
 		} catch (Exception e) {
@@ -112,24 +113,27 @@ public class DispacerController {
 		return httpEntity;
 	}
 
-	private StringBuilder getBody(HttpServletRequest servletRequest) throws IOException {
+	private JSONObject getBody(HttpServletRequest request) throws IOException {
+		JSONObject jsonObject = null;
+		try {
+			// Step 1: Obtain the InputStream from the request
+			InputStream inputStream = request.getInputStream();
+			if (inputStream.available() != 0) {
+				// Step 2: Parse the JSON data into a data structure
+				BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+				StringBuilder jsonBuffer = new StringBuilder();
+				String line;
+				while ((line = reader.readLine()) != null) {
+					jsonBuffer.append(line);
+				}
 
-		StringBuilder sb = new StringBuilder();
+				String jsonData = jsonBuffer.toString();
 
-		BufferedReader reader;
-
-		reader = servletRequest.getReader();
-
-		String line;
-
-		while ((line = reader.readLine()) != null) {
-
-			sb.append(line);
-
+				jsonObject = new JSONObject(jsonData);
+			}
+		} catch (IOException e) {
+			throw new IOException();
 		}
-
-		return sb;
-
+		return jsonObject;
 	}
-
 }
