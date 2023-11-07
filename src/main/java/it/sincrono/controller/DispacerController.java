@@ -86,6 +86,10 @@ public class DispacerController {
 			case "mail":
 				pathDaControllare = partiDiPath[0] + "/" + partiDiPath[1];
 				break;
+			case "dettaglio-token":
+				pathDaControllare = partiDiPath[0];
+				token=partiDiPath[1];
+				break;
 			default:
 				pathDaControllare = partiDiPath[0];
 			}
