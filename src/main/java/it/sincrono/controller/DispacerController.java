@@ -78,9 +78,19 @@ public class DispacerController {
 		String token = null;
 		String bodyString = null;
 		String auth = request.getHeaders().getFirst("authorization").substring(7);
-		String path = request.getURI().getPath().replaceAll("%20", " ").substring(9).split("/")[1];
-		if (path.equals("dettaglio-token"))
-			token = request.getURI().getPath().replaceAll("%20", " ").substring(9).split("/")[2];
+		String[] partiDiPath = request.getURI().getPath().replaceAll("%20", " ").substring(10).split("/");
+		String pathPerInvio = request.getURI().getPath().replaceAll("%20", " ").substring(10);
+		String pathDaControllare = null;
+		if (partiDiPath.length > 1) {
+			switch (partiDiPath[0]) {
+			case "mail":
+				pathDaControllare = partiDiPath[0] + "/" + partiDiPath[1];
+				break;
+			}
+		} else {
+			pathDaControllare = partiDiPath[0];
+		}
+
 		JSONObject body = null;
 		try {
 
@@ -95,10 +105,9 @@ public class DispacerController {
 		}
 
 		try {
-			if (utenteService.isUtenteAuthorized(path, auth, body, token)) {
+			if (utenteService.isUtenteAuthorized(pathDaControllare, auth, body, token)) {
 				httpEntity = new HttpEntity<GenericResponse>(restClient.sendRequest(
-						"http://localhost:8085/".concat(request.getURI().getPath().substring(10)),
-						servletRequest.getMethod(), bodyString));
+						"http://localhost:8085/".concat(pathPerInvio), servletRequest.getMethod(), bodyString));
 			}
 
 		} catch (ServiceException e) {
