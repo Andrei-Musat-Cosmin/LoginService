@@ -88,7 +88,7 @@ public class DispacerController {
 				break;
 			case "dettaglio-token":
 				pathDaControllare = partiDiPath[0];
-				token=partiDiPath[1];
+				token = partiDiPath[1];
 				break;
 			default:
 				pathDaControllare = partiDiPath[0];

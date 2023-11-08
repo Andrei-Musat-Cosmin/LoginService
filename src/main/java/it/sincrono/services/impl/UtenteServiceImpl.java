@@ -120,6 +120,14 @@ public class UtenteServiceImpl implements UtenteService {
 							throw new ServiceException(ServiceMessages.NON_AUTORIZZATO);
 					}
 					break;
+				case "get-rapportino":
+					LOGGER.log(Level.INFO, "Gestione per l'operazione " + percorso);
+					if (risultato) {
+						if (!anagrafica.getCodiceFiscale()
+								.equals(jsonNode.get("rapportinoDto").get("anagrafica").get("codiceFiscale").asText()))
+							throw new ServiceException(ServiceMessages.NON_AUTORIZZATO);
+					}
+					break;
 
 				case "add-document-image":
 					LOGGER.log(Level.INFO, "Gestione per l'operazione " + percorso);
