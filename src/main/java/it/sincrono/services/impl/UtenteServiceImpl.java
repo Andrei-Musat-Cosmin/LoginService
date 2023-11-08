@@ -104,6 +104,14 @@ public class UtenteServiceImpl implements UtenteService {
 			case 3:
 				LOGGER.info(utente.getUsername() + " con ruolo " + ruolo.getNome());
 				switch (percorso) {
+				case "invia-rapportino":
+					LOGGER.log(Level.INFO, "Gestione per l'operazione " + percorso);
+					if (risultato) {
+						if (!anagrafica.getCodiceFiscale()
+								.equals(jsonNode.get("rapportino").get("codiceFiscale").asText()))
+							throw new ServiceException(ServiceMessages.NON_AUTORIZZATO);
+					}
+					break;
 				case "dettaglio-token":
 					LOGGER.log(Level.INFO, "Gestione per l'operazione " + percorso);
 					if (risultato) {

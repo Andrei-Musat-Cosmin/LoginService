@@ -99,7 +99,6 @@ public class DispacerController {
 
 		JSONObject body = null;
 		try {
-
 			body = getBody(servletRequest);
 			if (body != null)
 				bodyString = body.toString();
