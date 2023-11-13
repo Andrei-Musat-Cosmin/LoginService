@@ -6,6 +6,7 @@ public class RapportinoDto {
 
 	private MeseDto mese;
 	private String note;
+	private String noteDipendente;
 	private Anagrafica anagrafica;
 	private Integer giorniUtili;
 	private Double giorniLavorati;
@@ -16,11 +17,12 @@ public class RapportinoDto {
 		super();
 	}
 
-	public RapportinoDto(MeseDto mese, String note, Anagrafica anagrafica, Integer giorniUtili, Double giorniLavorati,
-			Integer annoRequest, Integer meseRequest) {
+	public RapportinoDto(MeseDto mese, String note, String noteDipendente, Anagrafica anagrafica, Integer giorniUtili,
+			Double giorniLavorati, Integer annoRequest, Integer meseRequest) {
 		super();
 		this.mese = mese;
 		this.note = note;
+		this.noteDipendente = noteDipendente;
 		this.anagrafica = anagrafica;
 		this.giorniUtili = giorniUtili;
 		this.giorniLavorati = giorniLavorati;
@@ -82,6 +84,14 @@ public class RapportinoDto {
 
 	public void setMeseRequest(Integer meseRequest) {
 		this.meseRequest = meseRequest;
+	}
+
+	public String getNoteDipendente() {
+		return noteDipendente;
+	}
+
+	public void setNoteDipendente(String noteDipendente) {
+		this.noteDipendente = noteDipendente;
 	}
 
 }
