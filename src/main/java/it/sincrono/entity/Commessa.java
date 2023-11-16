@@ -2,6 +2,8 @@ package it.sincrono.entity;
 
 import java.util.Date;
 
+import java.util.Objects;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,6 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "commessa")
@@ -53,10 +56,19 @@ public class Commessa {
 
 	@Column(name = "attivo")
 	private Boolean attivo;
+	
+	@Transient
+    private  String nome;
+	
+	@Transient
+    private  String cognome;
+
+	
 
 	public Commessa(Integer id, TipoAziendaCliente tipoAziendaCliente, String clienteFinale, String titoloPosizione,
-			Boolean distacco, Date distaccoData, String distaccoAzienda, Date dataInizio, Date dataFine,
-			String tariffaGiornaliera, String aziendaDiFatturazioneInterna, Boolean attivo) {
+			Boolean distacco, String distaccoAzienda, Date distaccoData, Date dataInizio, Date dataFine,
+			String tariffaGiornaliera, String aziendaDiFatturazioneInterna, Boolean attivo, String nome,
+			String cognome) {
 		super();
 		this.id = id;
 		this.tipoAziendaCliente = tipoAziendaCliente;
@@ -70,8 +82,11 @@ public class Commessa {
 		this.tariffaGiornaliera = tariffaGiornaliera;
 		this.aziendaDiFatturazioneInterna = aziendaDiFatturazioneInterna;
 		this.attivo = attivo;
-
+		this.nome = nome;
+		this.cognome = cognome;
 	}
+
+
 
 	public Commessa() {
 		super();
@@ -178,5 +193,24 @@ public class Commessa {
 	public void setAttivo(Boolean attivo) {
 		this.attivo = attivo;
 	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getCognome() {
+		return cognome;
+	}
+
+	public void setCognome(String cognome) {
+		this.cognome = cognome;
+	}
+	
+	
+	
 
 }
