@@ -134,6 +134,7 @@ public class RestClient {
 		case "list-freeze":
 		case "list-freeze-filter":
 		case "list-not-freeze-filter":
+		case "inserisci-excel":
 			genericResponse = response.readEntity(AnagraficaDtoListResponse.class);
 			break;
 		case "get-check-rapportino-inviato":
