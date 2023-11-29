@@ -3,6 +3,7 @@ package it.sincrono.controller;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,6 +26,13 @@ import it.sincrono.services.utils.RestClient;
 @CrossOrigin()
 public class LoginController {
 	private static final Logger LOGGER = LogManager.getLogger(LoginController.class);
+	
+	
+	@Value("${path-frontend.path}")
+	private String pathFrontEnd;
+	
+	@Value("${path-backend.path}")
+	private String pathBackEnd;
 
 	@Autowired
 	private LoginService loginService;
@@ -70,10 +78,10 @@ public class LoginController {
 
 			emailRequest.setTo(request.getUsername());
 			emailRequest.setSubject("Link per il recupero password");
-			emailRequest.setBody("http://localhost:4200/form-recupero-password/" + jwtToken
+			emailRequest.setBody(pathFrontEnd+"form-recupero-password/" + jwtToken
 					+ " Se non sei stato te a richiedere il reset della password," + " per favore ignora questa email");
 
-			genericResponse = restClient.sendRequest("http://localhost:8085/mail/send", "POST",
+			genericResponse = restClient.sendRequest(pathBackEnd+"mail/send", "POST",
 					emailRequest.toString());
 
 		} catch (ServiceException e) {
