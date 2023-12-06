@@ -26,6 +26,8 @@ import it.sincrono.responses.OrganicoDtoListResponse;
 import it.sincrono.responses.RapportiniInviatiListResponse;
 import it.sincrono.responses.RapportinoB64Response;
 import it.sincrono.responses.RapportinoDtoResponse;
+import it.sincrono.responses.RichiestaResponse;
+import it.sincrono.responses.RichiesteDtoListResponse;
 import it.sincrono.responses.RuoloListResponse;
 import it.sincrono.responses.TipologicheListResponse;
 
@@ -146,6 +148,14 @@ public class RestClient {
 			break;
 		case "get-document-image":
 			genericResponse = response.readEntity(DocumentResponse.class);
+			break;
+	
+		case "list-richieste":
+		case "list-richieste-accettate":
+			genericResponse = response.readEntity(RichiesteDtoListResponse.class);
+			break;
+		case "get-richiesta":
+			genericResponse = response.readEntity(RichiestaResponse.class);
 			break;
 		default:
 			// Se nessun caso corrisponde, gestiamo di default
