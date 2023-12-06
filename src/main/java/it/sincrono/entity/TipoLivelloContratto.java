@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tipo_livello_contratto")
+@Table(name = "tipo_livelli_contrattuali")
 public class TipoLivelloContratto {
 
 	@Id
