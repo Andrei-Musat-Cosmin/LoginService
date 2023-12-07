@@ -2,9 +2,6 @@ package it.sincrono.entity;
 
 import java.util.Date;
 
-import java.util.Objects;
-
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -27,14 +24,10 @@ public class Contratto {
 	@ManyToOne
 	@JoinColumn(name = "id_tipo_causa_fine_rapporto")
 	private TipoCausaFineRapporto tipoCausaFineRapporto;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "id_tipo_causa_fine_contratto")
 	private TipoCausaFineContratto tipoCausaFineContratto;
-
-	@ManyToOne
-	@JoinColumn(name = "id_tipo_canale_reclutamento")
-	private TipoCanaleReclutamento tipoCanaleReclutamento;
 
 	@ManyToOne
 	@JoinColumn(name = "id_tipo_contratto")
@@ -72,7 +65,7 @@ public class Contratto {
 
 	@Column(name = "data_fine_rapporto")
 	private Date dataFineRapporto;
-	
+
 	@Column(name = "data_fine_contratto")
 	private Date dataFineContratto;
 
@@ -90,6 +83,9 @@ public class Contratto {
 
 	@Column(name = "percentuale_part_time")
 	private Double percentualePartTime;
+
+	@Column(name = "costo_aziendale")
+	private Double costoAziendale;
 
 	@Column(name = "retribuzione_mensile_lorda")
 	private Double retribuzioneMensileLorda;
@@ -157,26 +153,23 @@ public class Contratto {
 	@Transient
 	private Double RalPartTime;
 
-	
-	
-
 	public Contratto(Integer id, TipoCausaFineRapporto tipoCausaFineRapporto,
-			TipoCausaFineContratto tipoCausaFineContratto, TipoCanaleReclutamento tipoCanaleReclutamento,
-			TipoContratto tipoContratto, TipoLivelloContratto tipoLivelloContratto, TipoAzienda tipoAzienda,
-			TipoCcnl tipoCcnl, Boolean attivo, String qualifica, String sedeAssunzione, Date dataAssunzione,
-			Date dataInizioProva, Date dataFineProva, Date dataFineRapporto, Date dataFineContratto, Integer mesiDurata,
-			String livelloAttuale, String livelloFinale, Boolean partTime, Double percentualePartTime,
-			Double retribuzioneMensileLorda, Double superminimoMensile, Double ralAnnua, Double superminimoRal,
-			Double diariaMensile, Double diariaGiornaliera, Boolean ticket, Double valoreTicket, String tutor,
-			Boolean pfi, Boolean corsoSicurezza, Date dataCorsoSicurezza, Boolean pc, Boolean visitaMedica,
-			Date dataVisitaMedica, Double scattiAnzianita, Double tariffaPartitaIva, Boolean assicurazioneObbligatoria,
+			TipoCausaFineContratto tipoCausaFineContratto, TipoContratto tipoContratto,
+			TipoLivelloContratto tipoLivelloContratto, TipoAzienda tipoAzienda, TipoCcnl tipoCcnl, Boolean attivo,
+			String qualifica, String sedeAssunzione, Date dataAssunzione, Date dataInizioProva, Date dataFineProva,
+			Date dataFineRapporto, Date dataFineContratto, Integer mesiDurata, String livelloAttuale,
+			String livelloFinale, Boolean partTime, Double percentualePartTime, Double retribuzioneMensileLorda,
+			Double superminimoMensile, Double ralAnnua, Double superminimoRal, Double diariaMensile,
+			Double diariaGiornaliera, Boolean ticket, Double valoreTicket, String tutor, Boolean pfi,
+			Boolean corsoSicurezza, Date dataCorsoSicurezza, Boolean pc, Boolean visitaMedica, Date dataVisitaMedica,
+			Double scattiAnzianita, Double tariffaPartitaIva, Boolean assicurazioneObbligatoria,
 			Double retribuzioneNettaGiornaliera, Double retribuzioneNettaMensile, Double diariaAnnua,
-			Double ralPartTime) {
+			Double ralPartTime, Double costoAziendale) {
 		super();
 		this.id = id;
 		this.tipoCausaFineRapporto = tipoCausaFineRapporto;
 		this.tipoCausaFineContratto = tipoCausaFineContratto;
-		this.tipoCanaleReclutamento = tipoCanaleReclutamento;
+		this.costoAziendale = costoAziendale;
 		this.tipoContratto = tipoContratto;
 		this.tipoLivelloContratto = tipoLivelloContratto;
 		this.tipoAzienda = tipoAzienda;
@@ -218,10 +211,8 @@ public class Contratto {
 		RalPartTime = ralPartTime;
 	}
 
-	public Contratto(TipoCanaleReclutamento tipoCanaleReclutamento, TipoContratto tipoContratto,
-			TipoAzienda tipoAzienda, TipoCcnl tipoCcnl) {
+	public Contratto(TipoContratto tipoContratto, TipoAzienda tipoAzienda, TipoCcnl tipoCcnl) {
 		super();
-		this.tipoCanaleReclutamento = tipoCanaleReclutamento;
 		this.tipoContratto = tipoContratto;
 		this.tipoAzienda = tipoAzienda;
 		this.tipoCcnl = tipoCcnl;
@@ -235,7 +226,6 @@ public class Contratto {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
 
 	public Integer getId() {
 		return id;
@@ -251,14 +241,6 @@ public class Contratto {
 
 	public void setTipoCausaFineRapporto(TipoCausaFineRapporto tipoCausaFineRapporto) {
 		this.tipoCausaFineRapporto = tipoCausaFineRapporto;
-	}
-
-	public TipoCanaleReclutamento getTipoCanaleReclutamento() {
-		return tipoCanaleReclutamento;
-	}
-
-	public void setTipoCanaleReclutamento(TipoCanaleReclutamento tipoCanaleReclutamento) {
-		this.tipoCanaleReclutamento = tipoCanaleReclutamento;
 	}
 
 	public TipoContratto getTipoContratto() {
@@ -279,6 +261,14 @@ public class Contratto {
 
 	public TipoAzienda getTipoAzienda() {
 		return tipoAzienda;
+	}
+
+	public Double getCostoAziendale() {
+		return costoAziendale;
+	}
+
+	public void setCostoAziendale(Double costoAziendale) {
+		this.costoAziendale = costoAziendale;
 	}
 
 	public void setTipoAzienda(TipoAzienda tipoAzienda) {
@@ -584,7 +574,5 @@ public class Contratto {
 	public void setDataFineContratto(Date dataFineContratto) {
 		this.dataFineContratto = dataFineContratto;
 	}
-	
-	
 
 }
