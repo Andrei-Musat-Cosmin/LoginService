@@ -23,9 +23,9 @@ import it.sincrono.responses.FunzioniListResponse;
 import it.sincrono.responses.GenericResponse;
 import it.sincrono.responses.OperazioniListResponse;
 import it.sincrono.responses.OrganicoDtoListResponse;
-import it.sincrono.responses.RapportiniInviatiListResponse;
 import it.sincrono.responses.RapportinoB64Response;
 import it.sincrono.responses.RapportinoDtoResponse;
+import it.sincrono.responses.RichiestaCheckResponse;
 import it.sincrono.responses.RichiestaResponse;
 import it.sincrono.responses.RichiesteDtoListResponse;
 import it.sincrono.responses.RuoloListResponse;
@@ -156,6 +156,9 @@ public class RestClient {
 			break;
 		case "get-richiesta":
 			genericResponse = response.readEntity(RichiestaResponse.class);
+			break;
+		case "check-elaborazione":
+			genericResponse = response.readEntity(RichiestaCheckResponse.class);
 			break;
 		default:
 			// Se nessun caso corrisponde, gestiamo di default
