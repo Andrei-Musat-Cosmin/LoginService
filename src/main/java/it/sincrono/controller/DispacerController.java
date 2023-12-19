@@ -26,6 +26,7 @@ import it.sincrono.services.LoginService;
 import it.sincrono.services.UtenteService;
 import it.sincrono.services.exceptions.ServiceException;
 import it.sincrono.services.utils.RestClient;
+import it.sincrono.services.utils.StringUtil;
 import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
@@ -42,7 +43,10 @@ public class DispacerController {
 
 	@Autowired
 	private UtenteService utenteService;
-	
+
+	@Autowired
+	private StringUtil stringUtil;
+
 	@Value("${path-backend.path}")
 	private String pathBackEnd;
 
@@ -82,8 +86,14 @@ public class DispacerController {
 		String token = null;
 		String bodyString = null;
 		String auth = request.getHeaders().getFirst("authorization").substring(7);
-		String[] partiDiPath = request.getURI().getPath().replaceAll("%20", " ").substring(10).split("/");
-		String pathPerInvio = request.getURI().getPath().replaceAll("%20", " ").substring(10);
+		LOGGER.log(Level.ERROR, "request: " + request.getURI().getPath());
+		String path = stringUtil.modifiedPath(request.getURI().getPath());
+		//String path=request.getURI().getPath();
+		String[] partiDiPath = path.replaceAll("%20", " ").substring(10).split("/");
+		LOGGER.log(Level.ERROR, "partiDiPath: " + partiDiPath[0]);
+		String pathPerInvio = path.replaceAll("%20", " ").substring(10);
+		LOGGER.log(Level.ERROR, "pathPerInvio: " + pathPerInvio);
+
 		String pathDaControllare = null;
 		if (partiDiPath.length > 1) {
 			switch (partiDiPath[0]) {
@@ -115,8 +125,8 @@ public class DispacerController {
 
 		try {
 			if (utenteService.isUtenteAuthorized(pathDaControllare, auth, body, token)) {
-				httpEntity = new HttpEntity<GenericResponse>(restClient.sendRequest(
-						pathBackEnd.concat(pathPerInvio), servletRequest.getMethod(), bodyString));
+				httpEntity = new HttpEntity<GenericResponse>(restClient.sendRequest(pathBackEnd.concat(pathPerInvio),
+						servletRequest.getMethod(), bodyString));
 			}
 
 		} catch (ServiceException e) {

@@ -71,6 +71,9 @@ public class RestClient {
 		LOGGER.log(Level.INFO, "Response: " + response.getEntity().getClass());
 
 		GenericResponse responseBody = readEntity(response, method, url.substring(9).split("/")[1]);
+		
+		//GenericResponse responseBody = readEntity(response, method, url.substring(9).split("/")[2]);
+		
 		response.close();
 
 		return responseBody;

@@ -48,6 +48,8 @@ public class UtenteServiceImpl implements UtenteService {
 			if (body != null) {
 				jsonNode = objectMapper.readTree(body.toString());
 			}
+			
+			LOGGER.info("Utente jsonNode: "+jsonNode);
 
 			Utente utente = operazioniRepository.findOperazioneById(percorso,
 					utenteReposiroty.findByTokenPassword(auth).get().getId());
@@ -161,9 +163,11 @@ public class UtenteServiceImpl implements UtenteService {
 			}
 
 		} catch (ServiceException e) {
+			//LOGGER.log(Level.ERROR, "errore no value present log 125: "+e.getMessage());
 			LOGGER.log(Level.ERROR, e.getMessage());
 			throw new ServiceException(ServiceMessages.NON_AUTORIZZATO);
 		} catch (Exception e) {
+			//LOGGER.log(Level.ERROR, "errore no value present log 125: "+e.getMessage());
 			LOGGER.log(Level.ERROR, e.getMessage());
 			throw new ServiceException(ServiceMessages.ERRORE_GENERICO);
 		}
