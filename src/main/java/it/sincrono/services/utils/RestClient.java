@@ -128,6 +128,7 @@ public class RestClient {
 		case "tipo-causa-fine-contratto-map":
 		case "livelli-by-ccnl":
 		case "comuni-map":
+		case "comuni-by-provincia":
 		case "province-map":
 		case "tipo-azienda-cliente-map":
 			genericResponse = response.readEntity(TipologicheListResponse.class);
