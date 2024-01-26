@@ -10,8 +10,6 @@ public class AnagraficaDtoResponse extends GenericResponse {
 	@JsonView(AnagraficaDto.class)
 	private AnagraficaDto anagraficaDto;
 
-	private boolean residenzaDomicilioUguali;
-
 	public AnagraficaDtoResponse(Esito esito, AnagraficaDto anagraficaDto) {
 		super(esito);
 		this.anagraficaDto = anagraficaDto;
