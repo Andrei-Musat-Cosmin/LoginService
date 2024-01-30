@@ -26,10 +26,10 @@ public class Nazione {
 	private String denominazioneNazione;
 
 	@Column(name = "denominazione_cittadinanza")
-	private Comune denominazioneCittadinanza;
+	private String denominazioneCittadinanza;
 
 	public Nazione(Integer id, String siglaNazione, String codiceBelfiore, String denominazioneNazione,
-			Comune denominazioneCittadinanza) {
+			String denominazioneCittadinanza) {
 		super();
 		this.id = id;
 		this.siglaNazione = siglaNazione;
@@ -70,11 +70,11 @@ public class Nazione {
 		this.denominazioneNazione = denominazioneNazione;
 	}
 
-	public Comune getDenominazioneCittadinanza() {
+	public String getDenominazioneCittadinanza() {
 		return denominazioneCittadinanza;
 	}
 
-	public void setDenominazioneCittadinanza(Comune denominazioneCittadinanza) {
+	public void setDenominazioneCittadinanza(String denominazioneCittadinanza) {
 		this.denominazioneCittadinanza = denominazioneCittadinanza;
 	}
 
