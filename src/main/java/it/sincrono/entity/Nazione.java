@@ -28,6 +28,11 @@ public class Nazione {
 	@Column(name = "denominazione_cittadinanza")
 	private String denominazioneCittadinanza;
 
+	public Nazione() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public Nazione(Integer id, String siglaNazione, String codiceBelfiore, String denominazioneNazione,
 			String denominazioneCittadinanza) {
 		super();
