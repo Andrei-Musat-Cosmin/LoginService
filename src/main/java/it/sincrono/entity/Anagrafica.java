@@ -151,6 +151,12 @@ public class Anagrafica {
 	@Transient
 	private Boolean residenzaDomicilioUguali;
 
+	@Column(name = "piva")
+	private String piva;
+
+	@Column(name = "nome_azienda")
+	private String nomeAzienda;
+
 	public Anagrafica(Integer id, Utente utente, TipoAzienda tipoAzienda, TipoCanaleReclutamento tipoCanaleReclutamento,
 			Nazione idStatoNascita, Nazione idCittadinanza1, Nazione idCittadinanza2, Comune comuneResidenza,
 			Comune comuneDiNascita, Comune comuneDomicilio, Provincia provinciaResidenza, Provincia provinciaDiNascita,
@@ -160,7 +166,7 @@ public class Anagrafica {
 			Boolean coniugato, Boolean figliACarico, Boolean attivo, Boolean attesaLavori, Boolean categoriaProtetta,
 			String capResidenza, String capDomicilio, String localitaResidenzaEstera, String localitaNascitaEstero,
 			String localitaDomicilioEstero, Boolean checkInviato, Integer anno, Integer mese,
-			Boolean residenzaDomicilioUguali) {
+			Boolean residenzaDomicilioUguali, String piva, String nomeAzienda) {
 		super();
 		this.id = id;
 		this.utente = utente;
@@ -202,6 +208,8 @@ public class Anagrafica {
 		this.anno = anno;
 		this.mese = mese;
 		this.residenzaDomicilioUguali = residenzaDomicilioUguali;
+		this.piva = piva;
+		this.nomeAzienda = nomeAzienda;
 	}
 
 	public Anagrafica(String codiceFiscale) {
@@ -212,6 +220,22 @@ public class Anagrafica {
 	public Anagrafica() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+	public String getPiva() {
+		return piva;
+	}
+
+	public void setPiva(String piva) {
+		this.piva = piva;
+	}
+
+	public String getNomeAzienda() {
+		return nomeAzienda;
+	}
+
+	public void setNomeAzienda(String nomeAzienda) {
+		this.nomeAzienda = nomeAzienda;
 	}
 
 	public String getCapResidenza() {
