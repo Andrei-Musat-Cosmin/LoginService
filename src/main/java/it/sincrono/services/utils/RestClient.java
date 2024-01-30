@@ -21,6 +21,7 @@ import it.sincrono.responses.ContrattoListResponse;
 import it.sincrono.responses.DocumentResponse;
 import it.sincrono.responses.FunzioniListResponse;
 import it.sincrono.responses.GenericResponse;
+import it.sincrono.responses.NazioneListResponse;
 import it.sincrono.responses.OperazioniListResponse;
 import it.sincrono.responses.OrganicoDtoListResponse;
 import it.sincrono.responses.RapportinoB64Response;
@@ -165,6 +166,9 @@ public class RestClient {
 			break;
 		case "check-elaborazione":
 			genericResponse = response.readEntity(RichiestaCheckResponse.class);
+			break;
+		case "nazioni-list":
+			genericResponse = response.readEntity(NazioneListResponse.class);
 			break;
 		default:
 			// Se nessun caso corrisponde, gestiamo di default
