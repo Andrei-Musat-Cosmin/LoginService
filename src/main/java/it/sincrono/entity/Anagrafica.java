@@ -139,6 +139,12 @@ public class Anagrafica {
 	@Column(name = "localita_domicilio_estero")
 	private String localitaDomicilioEstero;
 
+	@Column(name = "piva")
+	private String piva;
+
+	@Column(name = "nome_azienda")
+	private String nomeAzienda;
+
 	@Transient
 	private Boolean checkInviato;
 
@@ -150,12 +156,6 @@ public class Anagrafica {
 
 	@Transient
 	private Boolean residenzaDomicilioUguali;
-
-	@Column(name = "piva")
-	private String piva;
-
-	@Column(name = "nome_azienda")
-	private String nomeAzienda;
 
 	public Anagrafica(Integer id, Utente utente, TipoAzienda tipoAzienda, TipoCanaleReclutamento tipoCanaleReclutamento,
 			Nazione idStatoNascita, Nazione idCittadinanza1, Nazione idCittadinanza2, Comune comuneResidenza,
