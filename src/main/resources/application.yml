@@ -7,7 +7,7 @@ path-frontend:
 
 path-backend:
 
-  path: http://192.168.58.196:8092/
+  path: http://localhost:8080/
 
 
 
