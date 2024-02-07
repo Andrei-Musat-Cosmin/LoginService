@@ -35,8 +35,16 @@ public class Anagrafica {
 	private TipoCanaleReclutamento tipoCanaleReclutamento;
 
 	@ManyToOne
-	@JoinColumn(name = "id_stato_nascita")
+	@JoinColumn(name = "id_stato_nascita_estera")
 	private Nazione idStatoNascita;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_stato_residenza_estera")
+	private Nazione idStatoResidenzaEstera;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_stato_domicilio_estero")
+	private Nazione idStatoDomicilioEstero;
 
 	@ManyToOne
 	@JoinColumn(name = "id_cittadinanza_1")
@@ -136,7 +144,7 @@ public class Anagrafica {
 	@Column(name = "localita_nascita_estero")
 	private String localitaNascitaEstero;
 
-	@Column(name = "localita_domicilio_estero")
+	@Column(name = "localita_domicilio_estera")
 	private String localitaDomicilioEstero;
 
 	@Column(name = "piva")
@@ -165,8 +173,8 @@ public class Anagrafica {
 			String mailPrivata, String mailAziendale, String mailPec, String titoliDiStudio, String altriTitoli,
 			Boolean coniugato, Boolean figliACarico, Boolean attivo, Boolean attesaLavori, Boolean categoriaProtetta,
 			String capResidenza, String capDomicilio, String localitaResidenzaEstera, String localitaNascitaEstero,
-			String localitaDomicilioEstero, Boolean checkInviato, Integer anno, Integer mese,
-			Boolean residenzaDomicilioUguali, String piva, String nomeAzienda) {
+			String localitaDomicilioEstero, String piva, String nomeAzienda, Boolean checkInviato, Integer anno,
+			Integer mese, Boolean residenzaDomicilioUguali) {
 		super();
 		this.id = id;
 		this.utente = utente;
@@ -204,12 +212,12 @@ public class Anagrafica {
 		this.localitaResidenzaEstera = localitaResidenzaEstera;
 		this.localitaNascitaEstero = localitaNascitaEstero;
 		this.localitaDomicilioEstero = localitaDomicilioEstero;
+		this.piva = piva;
+		this.nomeAzienda = nomeAzienda;
 		this.checkInviato = checkInviato;
 		this.anno = anno;
 		this.mese = mese;
 		this.residenzaDomicilioUguali = residenzaDomicilioUguali;
-		this.piva = piva;
-		this.nomeAzienda = nomeAzienda;
 	}
 
 	public Anagrafica(String codiceFiscale) {

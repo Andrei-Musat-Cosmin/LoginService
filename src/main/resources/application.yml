@@ -1,26 +1,10 @@
-
-#---------------prod--------------------
-
-#path-frontend:
-#
-#  path: http://192.168.58.196:8083/
-#  
-#
-#path-backend:
-#
-#  path: http://192.168.58.196:8080/
-
-
-#---------------------local------------------------------
-
 path-frontend:
 
   path: http://localhost:4200/
   
-  
-  
+
 path-backend:
 
-  path: http://localhost:8085/
+  path: http://localhost:8080/
 
 
